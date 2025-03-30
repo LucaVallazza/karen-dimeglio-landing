@@ -101,9 +101,7 @@ export const AboutSection = ({ forwardedRef }: { forwardedRef: React.RefObject<H
                   experiencia en derecho penal y laboral, comprometidos con la excelencia profesional.
                 </p>
               </div>
-              
-
-              
+                          
               {/* Credentials Bar */}
               <div className="bg-gradient-to-r from-blue-50 to-blue-100/50 p-5 rounded-xl flex flex-col md:flex-row items-center justify-center md:justify-around gap-6">
                 <div className="flex items-center">
