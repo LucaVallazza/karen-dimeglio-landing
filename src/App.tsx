@@ -1,54 +1,54 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, MapPin, Clock, Award, Shield, MessageCircle, Check } from 'lucide-react';
+import { Phone, MapPin, Clock } from 'lucide-react';
 import { FaWhatsapp, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
-import { Navbar } from './components/landing/Navbar';
+import { Navbar } from './components/landing/navbar';
 import { HeroSection } from './components/landing/hero-section';
 import { ServicesSection } from './components/landing/service-section';
 import { AboutSection } from './components/landing/about-section';
 import { SuccessSection } from './components/landing/success-section';
 
-
+// Actualización de la paleta de colores para tema oscuro
 export const colors = {
   primary: {
-    light: 'bg-blue-600',
-    default: 'bg-blue-700',
-    dark: 'bg-blue-800',
-    text: 'text-blue-700',
-    textLight: 'text-blue-500',
-    textHover: 'hover:text-blue-400',
-    border: 'border-blue-700',
+    light: 'bg-blue-500',
+    default: 'bg-blue-600',
+    dark: 'bg-blue-700',
+    text: 'text-blue-500',
+    textLight: 'text-blue-400',
+    textHover: 'hover:text-blue-300',
+    border: 'border-blue-600',
     borderLight: 'border-blue-500/20',
-    hover: 'hover:bg-blue-800',
+    hover: 'hover:bg-blue-500',
   },
   secondary: {
-    light: 'bg-gray-50',
-    default: 'bg-gray-100',
-    dark: 'bg-gray-200',
-    text: 'text-gray-700',
-    textLight: 'text-gray-500',
-    textDark: 'text-gray-900',
-    border: 'border-gray-200',
+    light: 'bg-gray-800',
+    default: 'bg-gray-850',
+    dark: 'bg-gray-900',
+    text: 'text-gray-300',
+    textLight: 'text-gray-400',
+    textDark: 'text-gray-100',
+    border: 'border-gray-700',
   },
   dark: {
-    light: 'bg-navy-700',
-    default: 'bg-navy-800',
-    dark: 'bg-navy-900',
-    text: 'text-navy-800',
-    accent: 'bg-white/10',
-    overlay: 'bg-navy-900/90',
+    light: 'bg-gray-800',
+    default: 'bg-gray-900',
+    dark: 'bg-gray-950',
+    text: 'text-gray-100',
+    accent: 'bg-gray-700',
+    overlay: 'bg-gray-950/90',
   },
   white: {
-    default: 'bg-white',
-    text: 'text-white',
+    default: 'bg-gray-900',
+    text: 'text-gray-100',
     hover: 'hover:text-white',
   },
   success: {
-    light: 'bg-green-50',
-    default: 'bg-green-500',
-    dark: 'bg-green-600',
-    text: 'text-green-700',
-    border: 'border-green-200',
+    light: 'bg-green-900/30',
+    default: 'bg-green-600',
+    dark: 'bg-green-700',
+    text: 'text-green-400',
+    border: 'border-green-800',
   }
 };
 
@@ -85,7 +85,7 @@ const ContactSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDi
   };
 
   return (
-    <section ref={forwardedRef} className="py-16 md:py-24 bg-white">
+    <section ref={forwardedRef} className="py-16 md:py-24 bg-gray-900">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -94,10 +94,10 @@ const ContactSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDi
           transition={{ duration: 0.7 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-navy-800">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-100">
             Contactanos
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-300 max-w-2xl mx-auto">
             Estamos listos para ayudarte. Contáctanos para una primera evaluación de tu caso sin costo.
           </p>
         </motion.div>
@@ -111,41 +111,41 @@ const ContactSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDi
             transition={{ duration: 0.7 }}
             className="w-full lg:w-2/5 space-y-6"
           >
-            <div className="bg-gray-50 p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-6 text-navy-800">Información de contacto</h3>
+            <div className="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+              <h3 className="text-xl font-semibold mb-6 text-gray-100">Información de contacto</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="bg-blue-700 p-3 rounded-full text-white mr-4">
+                  <div className="bg-blue-700/50 p-3 rounded-full text-blue-300 mr-4">
                     <Phone className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-medium text-navy-800">Teléfonos</p>
-                    <p className="text-gray-600">+54 11 1234-5678</p>
-                    <p className="text-gray-600">+54 11 9876-5432</p>
+                    <p className="font-medium text-gray-100">Teléfonos</p>
+                    <p className="text-gray-300">+54 11 1234-5678</p>
+                    <p className="text-gray-300">+54 11 9876-5432</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-blue-700 p-3 rounded-full text-white mr-4">
+                  <div className="bg-blue-700/50 p-3 rounded-full text-blue-300 mr-4">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-medium text-navy-800">Dirección</p>
-                    <p className="text-gray-600">Av. Corrientes 1234, 4to piso</p>
-                    <p className="text-gray-600">CABA, Argentina</p>
-                    <p className="text-gray-600 mt-1">Oficinas cómodas y seguras en pleno centro.</p>
+                    <p className="font-medium text-gray-100">Dirección</p>
+                    <p className="text-gray-300">Av. Corrientes 1234, 4to piso</p>
+                    <p className="text-gray-300">CABA, Argentina</p>
+                    <p className="text-gray-400 mt-1">Oficinas cómodas y seguras en pleno centro.</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-blue-700 p-3 rounded-full text-white mr-4">
+                  <div className="bg-blue-700/50 p-3 rounded-full text-blue-300 mr-4">
                     <Clock className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-medium text-navy-800">Horarios de atención</p>
-                    <p className="text-gray-600">Lunes a Viernes: 9:00 - 18:00</p>
-                    <p className="text-gray-600">Sábados: Con cita previa</p>
+                    <p className="font-medium text-gray-100">Horarios de atención</p>
+                    <p className="text-gray-300">Lunes a Viernes: 9:00 - 18:00</p>
+                    <p className="text-gray-300">Sábados: Con cita previa</p>
                   </div>
                 </div>
               </div>
@@ -160,18 +160,18 @@ const ContactSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDi
             transition={{ duration: 0.7 }}
             className="w-full lg:w-3/5"
           >
-            <div className="bg-gray-50 p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-6 text-navy-800">Envianos tu consulta</h3>
+            <div className="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+              <h3 className="text-xl font-semibold mb-6 text-gray-100">Envianos tu consulta</h3>
               
               {isSubmitted ? (
-                <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
+                <div className="bg-green-900/30 border border-green-800 text-green-400 px-4 py-3 rounded-lg">
                   <p className="font-medium">¡Gracias por contactarnos!</p>
                   <p>Nos pondremos en contacto contigo a la brevedad.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
                       Nombre completo *
                     </label>
                     <input
@@ -180,13 +180,13 @@ const ContactSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDi
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-100"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">
                       Teléfono *
                     </label>
                     <input
@@ -195,13 +195,13 @@ const ContactSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDi
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-100"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
                       Motivo de consulta *
                     </label>
                     <textarea
@@ -210,7 +210,7 @@ const ContactSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDi
                       value={formData.message}
                       onChange={handleChange}
                       rows={4}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-100"
                       required
                     />
                   </div>
@@ -218,7 +218,7 @@ const ContactSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDi
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-md flex justify-center items-center"
+                    className="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 px-6 rounded-md flex justify-center items-center"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -251,7 +251,7 @@ const WhatsAppButton = () => {
       href="https://wa.me/5491112345678?text=Hola,%20me%20gustaría%20realizar%20una%20consulta"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-50"
+      className="fixed bottom-6 right-6 bg-green-600 hover:bg-green-500 w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-50"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       aria-label="Contáctanos por WhatsApp"
@@ -266,7 +266,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-navy-900 text-white py-8">
+    <footer className="bg-gray-950 text-white py-8">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
@@ -276,14 +276,14 @@ const Footer = () => {
           
           <div className="flex flex-col items-center md:items-end">
             <div className="flex space-x-4 mb-4">
-              <a href="#" className="text-gray-400 hover:text-white transition duration-300">
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition duration-300">
                 <FaLinkedinIn className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition duration-300">
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition duration-300">
                 <FaInstagram className="h-6 w-6" />
               </a>
             </div>
-            <p className="text-sm text-gray-400">&copy; {currentYear} APL. Todos los derechos reservados.</p>
+            <p className="text-sm text-gray-500">&copy; {currentYear} APL. Todos los derechos reservados.</p>
           </div>
         </div>
       </div>
@@ -305,14 +305,31 @@ function App() {
   };
 
   return (
-    <div className="font-sans text-gray-800">
-      <Navbar />
+    <div className="font-sans text-gray-100 bg-gray-900">
+      {/* Pasar referencias como props al Navbar */}
+      <Navbar 
+        aboutRef={aboutRef}
+        servicesRef={servicesRef}
+        successRef={successRef}
+        contactRef={contactRef}
+      />
       <main>
-        <HeroSection scrollToContact={scrollToContact} />
-        <AboutSection forwardedRef={aboutRef} />
-        <ServicesSection forwardedRef={servicesRef} scrollToContact={scrollToContact} />
-        <SuccessSection forwardedRef={successRef} />
-        <ContactSection forwardedRef={contactRef} />
+        {/* Agregar IDs a cada sección */}
+        <section id="home">
+          <HeroSection scrollToContact={scrollToContact} />
+        </section>
+        <section id="about">
+          <AboutSection forwardedRef={aboutRef} />
+        </section>
+        <section id="services">
+          <ServicesSection forwardedRef={servicesRef} scrollToContact={scrollToContact} />
+        </section>
+        <section id="success">
+          <SuccessSection forwardedRef={successRef} />
+        </section>
+        <section id="contact">
+          <ContactSection forwardedRef={contactRef} />
+        </section>
       </main>
       <WhatsAppButton />
       <Footer />
