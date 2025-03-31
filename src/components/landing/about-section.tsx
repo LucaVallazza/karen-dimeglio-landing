@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { 
   MessageCircle, Award, Users, 
-  GraduationCap, Scale, ScrollText
+  GraduationCap, ScrollText
 } from "lucide-react";
 
-export const AboutSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDivElement> }) => {
+export const AboutSection = () => {
   // Animation variants
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -45,7 +45,7 @@ export const AboutSection = ({ forwardedRef }: { forwardedRef: React.RefObject<H
   ];
   
   return (
-    <section ref={forwardedRef} className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-gray-950 to-gray-900">
+    <section className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-gray-950 to-gray-900">
       {/* Subtle background elements */}
       <div className="hidden md:block absolute top-40 right-10 w-64 h-64 rounded-full bg-blue-900/10"></div>
       <div className="hidden md:block absolute bottom-40 left-10 w-48 h-48 rounded-full bg-blue-900/10"></div>

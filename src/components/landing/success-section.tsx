@@ -4,7 +4,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-export const SuccessSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDivElement> }) => {
+export const SuccessSection = () => {
   // Estado para controlar qué caso está expandido
   const [expandedCase, setExpandedCase] = useState<number | null>(0); // El primer caso expandido por defecto
   
@@ -43,9 +43,10 @@ export const SuccessSection = ({ forwardedRef }: { forwardedRef: React.RefObject
     }
   };
 
-  const item = {
+  // Objeto de animación para variants
+  const itemAnimation = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
   // Función para manejar el clic en un caso
@@ -55,7 +56,6 @@ export const SuccessSection = ({ forwardedRef }: { forwardedRef: React.RefObject
 
   return (
     <section 
-      ref={forwardedRef} 
       className="py-24 md:py-28 bg-gradient-to-b from-gray-900 to-gray-950 relative overflow-hidden"
     >
       {/* Subtle background pattern */}
@@ -99,7 +99,7 @@ export const SuccessSection = ({ forwardedRef }: { forwardedRef: React.RefObject
             {successCases.map((item, index) => (
               <motion.div 
                 key={index}
-                variants={item}
+                variants={itemAnimation} // Aquí está la corrección
                 className={`border-b border-gray-700 ${index === successCases.length - 1 ? 'border-b-0' : ''}`}
               >
                 {/* Accordion header */}

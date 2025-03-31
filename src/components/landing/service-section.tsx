@@ -1,16 +1,14 @@
 import { motion } from "framer-motion";
 import { 
   Gavel, Briefcase, ShieldCheck, Clock, 
-  BarChart, Scale, AlertTriangle, FileText 
+  BarChart, Scale, FileText 
 } from "lucide-react";
 
 // ==================== SERVICES SECTION COMPONENT ====================
 export const ServicesSection = ({ 
-    forwardedRef, 
     scrollToContact 
   }:
   { 
-    forwardedRef: React.RefObject<HTMLDivElement>;
     scrollToContact: () => void;
   }) => {
     const penalServices = [
@@ -87,7 +85,7 @@ export const ServicesSection = ({
     };
   
     return (
-      <section ref={forwardedRef} className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-blue-900/10 -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-blue-900/10 translate-y-1/2 -translate-x-1/2"></div>

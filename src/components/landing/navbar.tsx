@@ -1,19 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Menu, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
-export const Navbar = ({ 
-  aboutRef, 
-  servicesRef, 
-  successRef, 
-  contactRef 
-}: {
-  aboutRef: React.RefObject<HTMLDivElement>;
-  servicesRef: React.RefObject<HTMLDivElement>;
-  successRef: React.RefObject<HTMLDivElement>;
-  contactRef: React.RefObject<HTMLDivElement>;
-}) => {
+export const Navbar = () => {
     const [navbarBg, setNavbarBg] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
@@ -33,6 +22,27 @@ export const Navbar = ({
         } else {
           setNavbarBg(false);
         }
+        
+        // Detect active section based on position
+        const sections = ["home", "about", "services", "success", "contact"];
+        const scrollPosition = window.scrollY + 80; // Offset para navbar
+        
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (!element) continue;
+          
+          const offsetTop = element.offsetTop;
+          const height = element.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
+            if (activeSection !== section) {
+              setActiveSection(section);
+              // Opcionalmente, actualizar la URL sin causar scroll
+              // history.replaceState(null, "", `#${section}`);
+            }
+            break;
+          }
+        }
       };
 
       // Handle hash change events
@@ -49,7 +59,7 @@ export const Navbar = ({
         window.removeEventListener('scroll', handleScroll);
         window.removeEventListener('hashchange', handleHashChange);
       };
-    }, []);
+    }, [activeSection]);
     
     // Array of navigation items with href attributes
     const navItems = [

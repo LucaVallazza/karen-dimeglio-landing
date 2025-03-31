@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState} from 'react';
 import { motion } from 'framer-motion';
 import { Phone, MapPin, Clock } from 'lucide-react';
 import { FaWhatsapp, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
@@ -53,7 +53,7 @@ export const colors = {
 };
 
 // ==================== CONTACT SECTION COMPONENT ====================
-const ContactSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDivElement> }) => {
+const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -85,7 +85,7 @@ const ContactSection = ({ forwardedRef }: { forwardedRef: React.RefObject<HTMLDi
   };
 
   return (
-    <section ref={forwardedRef} className="py-16 md:py-24 bg-gray-900">
+    <section className="py-16 md:py-24 bg-gray-900">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -293,42 +293,31 @@ const Footer = () => {
 
 // ==================== MAIN APP COMPONENT ====================
 function App() {
-  // Refs for scrolling to sections
-  const aboutRef = useRef<HTMLDivElement>(null);
-  const servicesRef = useRef<HTMLDivElement>(null);
-  const successRef = useRef<HTMLDivElement>(null);
-  const contactRef = useRef<HTMLDivElement>(null);
-
-  // Function to scroll to contact section
+  // Redefinir scrollToContact para usar anclas
   const scrollToContact = () => {
-    contactRef.current?.scrollIntoView({ behavior: 'smooth' });
+    window.location.href = "#contact";
   };
 
   return (
     <div className="font-sans text-gray-100 bg-gray-900">
-      {/* Pasar referencias como props al Navbar */}
-      <Navbar 
-        aboutRef={aboutRef}
-        servicesRef={servicesRef}
-        successRef={successRef}
-        contactRef={contactRef}
-      />
+      {/* Ya no pasamos referencias al Navbar */}
+      <Navbar />
       <main>
-        {/* Agregar IDs a cada sección */}
+        {/* Solo mantener los IDs de sección */}
         <section id="home">
           <HeroSection scrollToContact={scrollToContact} />
         </section>
         <section id="about">
-          <AboutSection forwardedRef={aboutRef} />
+          <AboutSection />
         </section>
         <section id="services">
-          <ServicesSection forwardedRef={servicesRef} scrollToContact={scrollToContact} />
+          <ServicesSection scrollToContact={scrollToContact} />
         </section>
         <section id="success">
-          <SuccessSection forwardedRef={successRef} />
+          <SuccessSection />
         </section>
         <section id="contact">
-          <ContactSection forwardedRef={contactRef} />
+          <ContactSection />
         </section>
       </main>
       <WhatsAppButton />
