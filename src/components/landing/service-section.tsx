@@ -1,296 +1,354 @@
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Gavel, Briefcase, ShieldCheck, Clock, 
-  BarChart, Scale, FileText 
+  BarChart, Scale, FileText, Heart,
+  ChevronRight, ChevronLeft, ArrowRight
 } from "lucide-react";
 
 // ==================== SERVICES SECTION COMPONENT ====================
 export const ServicesSection = ({ 
-    scrollToContact 
-  }:
-  { 
-    scrollToContact: () => void;
-  }) => {
-    const penalServices = [
-      "Defensas penales y Querellas",
-      "Denuncias",
-      "Instrucción, juicio y ejecución  ",
-      "Excarcelaciones",
-      "Recursos de apelación",
-      "Pedidos de libertad condicional",
-      "Otros servicios relacionados"
-    ];
+  scrollToContact 
+}: { 
+  scrollToContact: () => void;
+}) => {
+  // Estado para el carrusel en dispositivos móviles
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
   
-    const laboralServices = [
-      "Intercambio telegráfico",
-      "SECLO",
-      "Demandas laborales",
-      "Audiencias",
-      "Ejecución",
-      "Medidas cautelares",
-      "Reincorporaciones",
-      "Acuerdos laborales"
-    ];
+  // Detectar dispositivos móviles
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
   
-    // Combined service features
-    const serviceFeatures = [
-      {
-        icon: <ShieldCheck className="h-5 w-5" />,
-        title: "Asesoramiento integral",
-        description: "Orientación completa durante todo el proceso legal"
-      },
-      {
-        icon: <Clock className="h-5 w-5" />,
-        title: "Atención 24 horas",
-        description: "Disponibles para emergencias penales en cualquier momento"
-      },
-      {
-        icon: <BarChart className="h-5 w-5" />,
-        title: "Experiencia probada",
-        description: "Casos exitosos en múltiples procesos judiciales"
-      },
-      {
-        icon: <Scale className="h-5 w-5" />,
-        title: "Enfoque personalizado",
-        description: "Estrategia legal adaptada a las necesidades de cada cliente"
-      }
-    ];
+  // Datos de servicios
+  const services = [
+    {
+      title: "Derecho Penal",
+      subtitle: "Defensa de sus derechos y libertades",
+      icon: <Gavel className="h-6 w-6 text-navy-700" />,
+      features: [
+        { text: "Defensa en casos de delitos contra la propiedad", icon: <ShieldCheck className="h-5 w-5" /> },
+        { text: "Representación en delitos económicos y tributarios", icon: <BarChart className="h-5 w-5" /> },
+        { text: "Asistencia en procesos de excarcelación", icon: <Scale className="h-5 w-5" /> },
+      ],
+      description: "Brindamos asesoramiento y representación legal completa en materia penal, defendiendo sus derechos con estrategias eficaces basadas en nuestra amplia experiencia."
+    },
+    {
+      title: "Derecho Laboral",
+      subtitle: "Protección de derechos del trabajador",
+      icon: <Briefcase className="h-6 w-6 text-navy-700" />,
+      features: [
+        { text: "Despidos injustificados y reclamos indemnizatorios", icon: <FileText className="h-5 w-5" /> },
+        { text: "Accidentes de trabajo y enfermedades laborales", icon: <Clock className="h-5 w-5" /> },
+        { text: "Conflictos gremiales y sindicales", icon: <Scale className="h-5 w-5" /> },
+      ],
+      description: "Defendemos los derechos de los trabajadores con un enfoque especializado, garantizando que reciban un trato justo y las compensaciones que les corresponden por ley."
+    },
+    {
+      title: "Amparos de Salud",
+      subtitle: "Defensa del derecho a la salud",
+      icon: <Heart className="h-6 w-6 text-navy-700" />,
+      features: [
+        { text: "Medidas cautelares", icon: <Clock className="h-5 w-5" /> },
+        { text: "Amparos contra ministerios de Salud, Obras Sociales y prepagas", icon: <ShieldCheck className="h-5 w-5" /> },
+        { text: "Ejecuciones de sentencias", icon: <Gavel className="h-5 w-5" /> },
+      ],
+      description: "Garantizamos el acceso a tratamientos y medicamentos necesarios mediante acciones legales efectivas contra entidades que niegan la cobertura adecuada de salud."
+    }
+  ];
 
-    const containerVariants = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          staggerChildren: 0.15
-        }
-      }
-    };
-  
-    const itemVariants = {
-      hidden: { opacity: 0, y: 20 },
-      visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5 }
-      }
-    };
+  // Estado y funciones para manejar diferentes tamaños de pantalla
+  const [screenSize, setScreenSize] = useState('small'); // 'small', 'medium', 'large'
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const autoplayDuration = 5000;
 
-    const featureVariants = {
-      hidden: { opacity: 0, y: 10 },
-      visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.4 }
+  // Cálculos dinámicos basados en el tamaño de pantalla
+  const slidesPerView = screenSize === 'small' ? 1 : screenSize === 'medium' ? 2 : 3;
+  const totalSlides = Math.ceil(services.length / slidesPerView);
+
+  // Detectar tamaño de pantalla
+  useEffect(() => {
+    const updateScreenSize = () => {
+      if (window.innerWidth < 640) {
+        setScreenSize('small');
+      } else if (window.innerWidth < 1024) {
+        setScreenSize('medium');
+      } else {
+        setScreenSize('large');
       }
     };
-  
-    return (
-      <section className="py-16 md:py-24 bg-gray-900 relative overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-blue-900/10 -translate-y-1/2 translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-blue-900/10 translate-y-1/2 -translate-x-1/2"></div>
-        <div className="absolute bottom-1/3 right-0 w-16 h-16 rounded-full bg-blue-800/10"></div>
-        
-        <div className="container mx-auto px-4 relative">
+    
+    updateScreenSize();
+    window.addEventListener('resize', updateScreenSize);
+    return () => window.removeEventListener('resize', updateScreenSize);
+  }, []);
+
+  // Autoplay con pausa al interactuar
+  useEffect(() => {
+    if (isPaused || screenSize === 'large') return;
+    
+    const timer = setInterval(() => {
+      if (progress < 100) {
+        setProgress(prev => prev + (100 / (autoplayDuration / 100)));
+      } else {
+        setProgress(0);
+        setActiveIndex(prev => (prev + 1) % totalSlides);
+      }
+    }, 100);
+    
+    return () => clearInterval(timer);
+  }, [isPaused, progress, totalSlides, screenSize]);
+
+  // Navegación mejorada
+  const goToSlide = useCallback((index: number) => {
+    setActiveIndex(index);
+    setProgress(0);
+  }, []);
+
+  const handleNext = useCallback(() => {
+    setProgress(0);
+    setActiveIndex(prev => (prev + 1) % totalSlides);
+  }, [totalSlides]);
+
+  const handlePrev = useCallback(() => {
+    setProgress(0);
+    setActiveIndex(prev => (prev === 0 ? totalSlides - 1 : prev - 1));
+  }, [totalSlides]);
+
+  // Manejo avanzado de gestos táctiles
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsPaused(true);
+    setTouchStart(e.targetTouches[0].clientX);
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 100) {
+      handleNext();
+    } else if (touchEnd - touchStart > 100) {
+      handlePrev();
+    }
+    setTimeout(() => setIsPaused(false), 1000);
+  };
+
+  return (
+    <section id="services" className="py-16 md:py-24 bg-gray-50 relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-navy-50/50 -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-navy-50/50 translate-y-1/2 -translate-x-1/2"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="text-center mb-12 md:mb-16"
           >
-            <span className="inline-block px-4 py-1.5 bg-blue-900/30 text-blue-400 text-sm font-medium rounded-full mb-3">
+            <span className="inline-block px-4 py-1.5 bg-navy-100 text-navy-800 text-sm font-medium rounded-full mb-3">
               Servicios Legales Especializados
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-4">
-              Áreas de <span className="text-blue-400 relative inline-block">
-                Práctica
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 mb-5">
+              Nuestros <span className="text-navy-700 relative inline-block">
+                Servicios
                 <svg className="absolute -bottom-1 left-0 w-full" height="6" viewBox="0 0 200 6" fill="none">
-                  <path d="M0 3C50 1 150 1 200 3" stroke="#60a5fa" strokeWidth="4" strokeLinecap="round"/>
+                  <path d="M0 3C50 1 150 1 200 3" stroke="oklch(var(--color-accent-500))" strokeWidth="4" strokeLinecap="round"/>
                 </svg>
               </span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Asesoramiento jurídico especializado en derecho penal y laboral, con un enfoque personalizado para cada caso
+            <p className="text-gray-700 max-w-3xl mx-auto text-lg">
+              Ofrecemos asistencia jurídica integral para proteger tus derechos y resolver tus problemas legales con eficacia y profesionalismo.
             </p>
           </motion.div>
-          
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
-          >
-            {/* Derecho Penal - Enhanced Card */}
+        </div>
+        
+        {/* Vista escritorio - Grid normal */}
+        <div className="hidden lg:grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {services.map((service, index) => (
             <motion.div 
-              variants={itemVariants}
-              className="bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-700"
-            >
-              <div className="relative p-6 md:p-8 pb-0">
-                <div className="flex items-center mb-6">
-                  <div className="bg-blue-900/70 p-3 rounded-lg mr-4">
-                    <Gavel className="h-6 w-6 text-blue-300" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-bold text-gray-100">Derecho Penal</h3>
-                    <p className="text-blue-400 text-sm mt-1">Defensa de sus derechos y libertades</p>
-                  </div>
-                </div>
-                
-                <p className="text-gray-300 mb-6">
-                  Brindamos asesoramiento y representación legal en todos los aspectos del derecho penal, 
-                  desde la denuncia hasta la ejecución de la pena.
-                </p>
-
-                
-                <h4 className="font-semibold text-gray-200 mb-4 flex items-center">
-                  <FileText className="h-5 w-5 text-blue-400 mr-2" />
-                  Servicios específicos:
-                </h4>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-8">
-                  {penalServices.map((service, index) => (
-                    <div key={index} className="flex items-start">
-                      <svg className="w-5 h-5 text-blue-400 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                      </svg>
-                      <span className="text-gray-300">{service}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="px-6 md:px-8 pb-6 md:pb-8">
-                <motion.button 
-                  onClick={scrollToContact}
-                  className="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 px-4 rounded-lg transition-all shadow-sm flex items-center justify-center gap-2"
-                  whileHover={{ scale: 1.02, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1)' }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span>Consulta tu caso penal</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                  </svg>
-                </motion.button>
-              </div>
-            </motion.div>
-            
-            {/* Derecho Laboral - Enhanced Card */}
-            <motion.div 
-              variants={itemVariants}
-              className="bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-700"
-            >
-              <div className="relative p-6 md:p-8 pb-0">
-                <div className="flex items-center mb-6">
-                  <div className="bg-blue-900/70 p-3 rounded-lg mr-4">
-                    <Briefcase className="h-6 w-6 text-blue-300" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-bold text-gray-100">Derecho Laboral</h3>
-                    <p className="text-blue-400 text-sm mt-1">Protección de sus derechos laborales</p>
-                  </div>
-                </div>
-                
-                <p className="text-gray-300 mb-6">
-                  Ofrecemos asesoramiento legal especializado en materia laboral, protegiendo los derechos 
-                  de los trabajadores en todas las etapas del proceso.
-                </p>
-                
-                <h4 className="font-semibold text-gray-200 mb-4 flex items-center">
-                  <FileText className="h-5 w-5 text-blue-400 mr-2" />
-                  Servicios específicos:
-                </h4>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-8">
-                  {laboralServices.map((service, index) => (
-                    <div key={index} className="flex items-start">
-                      <svg className="w-5 h-5 text-blue-400 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                      </svg>
-                      <span className="text-gray-300">{service}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="px-6 md:px-8 pb-6 md:pb-8">
-                <motion.button 
-                  onClick={scrollToContact}
-                  className="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 px-4 rounded-lg transition-all shadow-sm flex items-center justify-center gap-2"
-                  whileHover={{ scale: 1.02, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1)' }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span>Consulta tu caso laboral</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                  </svg>
-                </motion.button>
-              </div>
-            </motion.div>
-          </motion.div>
-          
-          {/* Common Features Section */}
-          <div className="mb-8">
-            <motion.h3
-              initial={{ opacity: 0, y: 10 }}
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-xl md:text-2xl font-bold text-center text-gray-100 mb-10"
+              transition={{ duration: 0.7, delay: index * 0.2 }}
+              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200"
             >
-              Por qué elegir nuestros servicios legales
-            </motion.h3>
-            
-            <motion.div 
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {serviceFeatures.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  variants={featureVariants}
-                  className="bg-gray-800 p-5 rounded-lg shadow-sm border border-gray-700 hover:shadow-md transition-shadow"
-                >
-                  <div className="bg-blue-900/30 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-blue-400">
-                    {feature.icon}
+              <div className="relative p-6 md:p-8 pb-0">
+                <div className="flex items-center mb-6">
+                  <div className="bg-navy-100 p-3 rounded-lg mr-4">
+                    {service.icon}
                   </div>
-                  <h4 className="font-semibold text-gray-100 mb-2">{feature.title}</h4>
-                  <p className="text-gray-400 text-sm">{feature.description}</p>
-                </motion.div>
-              ))}
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-navy-900">{service.title}</h3>
+                    <p className="text-navy-600 text-sm mt-1">{service.subtitle}</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-6">{service.description}</p>
+                <div className="space-y-3 mb-8">
+                  {service.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-start">
+                      <div className="bg-navy-50 p-2 rounded-md text-navy-700 mr-3 mt-0.5">
+                        {feature.icon}
+                      </div>
+                      <p className="text-gray-700">{feature.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
+                <button 
+                  onClick={scrollToContact}
+                  className="text-navy-700 hover:text-navy-800 font-medium flex items-center"
+                >
+                  Consultar sobre este servicio
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </button>
+              </div>
             </motion.div>
+          ))}
+        </div>
+        
+        {/* Vista móvil - Carrusel */}
+        <div className="lg:hidden mb-16 relative">
+          <div 
+            ref={carouselRef}
+            className="carousel-container overflow-hidden" 
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <AnimatePresence initial={false} mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200"
+              >
+                <div className="relative p-6 pb-0">
+                  <div className="flex items-center mb-6">
+                    <div className="bg-navy-100 p-3 rounded-lg mr-4">
+                      {services[activeIndex].icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-navy-900">{services[activeIndex].title}</h3>
+                      <p className="text-navy-600 text-sm mt-1">{services[activeIndex].subtitle}</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 mb-6">{services[activeIndex].description}</p>
+                  <div className="space-y-3 mb-8">
+                    {services[activeIndex].features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start">
+                        <div className="bg-navy-50 p-2 rounded-md text-navy-700 mr-3 mt-0.5">
+                          {feature.icon}
+                        </div>
+                        <p className="text-gray-700">{feature.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
+                  <button 
+                    onClick={scrollToContact}
+                    className="text-navy-700 hover:text-navy-800 font-medium flex items-center"
+                  >
+                    Consultar sobre este servicio
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </button>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
           
-          {/* Call to Action Banner */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="bg-gradient-to-r from-blue-900 to-blue-800 rounded-xl shadow-lg overflow-hidden"
-          >
+          {/* Controles del carrusel */}
+          <div className="flex justify-between mt-6">
+            <button 
+              onClick={handlePrev} 
+              className="bg-white border border-gray-200 rounded-full p-2 shadow-sm hover:bg-navy-50"
+              aria-label="Anterior servicio"
+            >
+              <ChevronLeft className="h-5 w-5 text-navy-700" />
+            </button>
+            
+            <div className="flex items-center space-x-2">
+              {services.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => goToSlide(idx)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    idx === activeIndex ? 'w-6 bg-navy-600' : 'w-2.5 bg-gray-300'
+                  }`}
+                  aria-label={`Ver servicio ${idx + 1}`}
+                />
+              ))}
+            </div>
+            
+            <button 
+              onClick={handleNext} 
+              className="bg-white border border-gray-200 rounded-full p-2 shadow-sm hover:bg-navy-50"
+              aria-label="Siguiente servicio"
+            >
+              <ChevronRight className="h-5 w-5 text-navy-700" />
+            </button>
+          </div>
+          
+          {/* Indicador de swipe */}
+          <div className="text-center mt-3">
+            <p className="text-xs text-gray-500 flex items-center justify-center">
+              <ChevronLeft className="h-3 w-3" />
+              Desliza para ver más servicios
+              <ChevronRight className="h-3 w-3" />
+            </p>
+          </div>
+        </div>
+        
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="max-w-5xl mx-auto"
+        >
+          <div className="bg-gradient-to-r from-navy-700 to-navy-800 rounded-xl shadow-lg overflow-hidden">
             <div className="px-6 py-10 md:py-8 md:px-10 flex flex-col md:flex-row md:items-center md:justify-between">
               <div className="mb-6 md:mb-0">
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-2">¿Necesita asesoramiento legal?</h3>
-                <p className="text-blue-200">Contáctenos para una evaluación profesional de su caso</p>
+                <p className="text-navy-100">Contáctenos para una evaluación profesional de su caso</p>
               </div>
-              <motion.button 
+              <motion.button
                 onClick={scrollToContact}
-                className="bg-blue-700/60 hover:bg-blue-700/90 text-white font-medium py-3 px-6 rounded-lg shadow-md transition-all flex items-center justify-center gap-2 border border-blue-600/40"
-                whileHover={{ scale: 1.03, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15)' }}
-                whileTap={{ scale: 0.98 }}
+                className="bg-white hover:bg-gray-100 text-navy-800 px-6 py-3 rounded-md font-medium shadow-md flex items-center"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                <span>Contactar ahora</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
+                Consultar ahora
+                <ChevronRight className="ml-2 h-5 w-5" />
               </motion.button>
             </div>
-          </motion.div>
-        </div>
-      </section>
-    );
-  };
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};

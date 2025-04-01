@@ -37,8 +37,6 @@ export const Navbar = () => {
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
             if (activeSection !== section) {
               setActiveSection(section);
-              // Opcionalmente, actualizar la URL sin causar scroll
-              // history.replaceState(null, "", `#${section}`);
             }
             break;
           }
@@ -74,7 +72,7 @@ export const Navbar = () => {
       <motion.nav 
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           navbarBg 
-            ? 'bg-gray-900/98 shadow-lg backdrop-blur-sm py-2 border-b border-gray-800/50' 
+            ? 'bg-white shadow-soft backdrop-blur-sm py-2 border-b border-gray-200' 
             : 'bg-transparent py-4'
         }`}
         initial={{ y: -100 }}
@@ -91,37 +89,36 @@ export const Navbar = () => {
               transition={{ duration: 0.2 }}
             >
               <div className="relative group">
-                <div className="absolute inset-0 bg-blue-600 rounded-full blur-sm opacity-50 group-hover:opacity-70 transition-opacity"></div>
-                <div className="h-11 w-11 rounded-full bg-gradient-to-br from-blue-700 to-blue-900 flex items-center justify-center text-white font-bold mr-3 relative shadow-md">
+                <div className="absolute inset-0 bg-navy-600 rounded-full blur-sm opacity-50 group-hover:opacity-70 transition-opacity"></div>
+                <div className="h-11 w-11 rounded-full bg-gradient-to-br from-navy-600 to-navy-900 flex items-center justify-center text-white font-bold mr-3 relative shadow-md">
                   <span className="text-lg tracking-tighter">APL</span>
                 </div>
               </div>
               <div>
-                <span className="text-white font-bold text-lg tracking-tight">
-                  Abogados <span className="text-blue-400">Penales</span> y <span className="text-blue-400">Laborales</span>
+                <span className="text-navy-900 font-bold text-lg tracking-tight">
+                  Abogados <span className="text-navy-700">Penalistas</span> y <span className="text-navy-700">Laboralistas</span>
                 </span>
               </div>
             </motion.a>
             
-            {/* Desktop Menu - Now using anchor links */}
+            {/* Desktop Menu */}
             <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item) => (
                 <motion.a 
                   key={item.section}
                   href={item.href}
-                  className={`relative px-4 py-2 text-white transition-all duration-300 rounded-md ${
+                  className={`relative px-4 py-2 transition-all duration-300 rounded-md ${
                     activeSection === item.section 
-                      ? 'font-medium text-blue-400' 
-                      : 'hover:text-blue-300'
+                      ? 'font-medium text-navy-800' 
+                      : 'text-gray-600 hover:text-navy-700'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
                   {activeSection === item.section && (
                     <motion.div 
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 mx-auto"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-navy-600 mx-auto"
                       style={{ width: '50%' }}
                       layoutId="activeNavIndicator"
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -133,7 +130,7 @@ export const Navbar = () => {
               {/* Botón Consulta tu caso - Corregido */}
               <motion.a 
                 href="#contact"
-                className="ml-4 bg-blue-700 hover:bg-blue-600 text-white px-5 py-2 rounded-md font-medium shadow-md flex items-center whitespace-nowrap"
+                className="ml-4 bg-navy-700 hover:bg-navy-800 text-white px-5 py-2 rounded-md font-medium shadow-md flex items-center whitespace-nowrap"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -145,7 +142,7 @@ export const Navbar = () => {
             {/* Mobile Menu Button */}
             <motion.button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden text-white focus:outline-none bg-blue-900/50 p-2 rounded-md"
+              className="lg:hidden text-navy-800 focus:outline-none bg-gray-100 p-2 rounded-md"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -164,7 +161,7 @@ export const Navbar = () => {
           </div>
         </div>
         
-        {/* Mobile Menu - Now using anchor links */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div 
@@ -172,7 +169,7 @@ export const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:hidden bg-gradient-to-b from-gray-900 to-gray-950 shadow-xl overflow-hidden border-t border-gray-800"
+              className="lg:hidden bg-white shadow-soft overflow-hidden border-t border-gray-200"
             >
               <div className="container mx-auto px-4 py-4">
                 {navItems.map((item, index) => (
@@ -181,8 +178,8 @@ export const Navbar = () => {
                     href={item.href}
                     className={`text-left w-full py-3 px-2 flex justify-between items-center rounded-md my-1 ${
                       activeSection === item.section 
-                        ? 'bg-blue-900/20 text-white font-medium' 
-                        : 'text-gray-300 hover:bg-blue-900/10 hover:text-white'
+                        ? 'bg-navy-50 text-navy-800 font-medium' 
+                        : 'text-gray-600 hover:bg-gray-50 hover:text-navy-700'
                     } transition-all`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -196,21 +193,21 @@ export const Navbar = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <div className="w-2 h-2 rounded-full bg-blue-500" />
+                        <div className="w-2 h-2 rounded-full bg-navy-600" />
                       </motion.div>
                     )}
                   </motion.a>
                 ))}
                 
                 <motion.div 
-                  className="mt-4 pt-4 border-t border-gray-800"
+                  className="mt-4 pt-4 border-t border-gray-200"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.4 }}
                 >
                   <motion.a 
                     href="#contact"
-                    className="bg-gradient-to-r from-blue-800 to-blue-700 text-white py-3 px-4 rounded-md w-full text-center font-medium shadow-md flex items-center justify-center"
+                    className="bg-navy-700 hover:bg-navy-800 text-white py-3 px-4 rounded-md w-full text-center font-medium shadow-md flex items-center justify-center"
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -224,4 +221,4 @@ export const Navbar = () => {
         </AnimatePresence>
       </motion.nav>
     );
-  };
+};

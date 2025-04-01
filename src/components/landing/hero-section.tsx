@@ -1,189 +1,170 @@
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
-export const HeroSection = ({ scrollToContact }: { scrollToContact: () => void }) => {
-    const scrollToNext = () => {
-      // Scroll suave a la siguiente sección (altura de la pantalla)
-      window.scrollTo({
-        top: window.innerHeight,
-        behavior: 'smooth'
-      });
-    };
-    
-    return (
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Fondo con efecto de profundidad y gradiente optimizado */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800/95 to-navy-800/90 z-10"></div>
-        
-        {/* Imagen de fondo con mejor optimización visual */}
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070')] bg-cover bg-fixed bg-center opacity-90 filter brightness-[0.4] contrast-[1.1]"></div>
-        
-        {/* Elementos gráficos decorativos */}
-        <motion.div 
-          className="absolute inset-0 z-10 opacity-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
-          transition={{ duration: 1.5 }}
-        >
-          <div className="absolute top-10 right-[10%] w-80 h-80 rounded-full border-2 border-blue-400/40 transform rotate-45"></div>
-          <div className="absolute bottom-20 left-[5%] w-60 h-60 rounded-full border-2 border-white/30"></div>
-          <div className="absolute top-[40%] left-[20%] w-40 h-40 rounded-full border border-blue-300/40"></div>
-        </motion.div>
-        
-        {/* Contenido principal con mejor distribución espacial */}
-        <div className="container mx-auto px-6 md:px-12 relative z-20 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12">
-            {/* Columna de texto con mejor jerarquía visual */}
-            <div className="text-center md:text-left">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="mb-2 md:mb-4"
-              >
-                <span className="inline-block bg-blue-700/20 text-blue-300 px-4 py-1 rounded-full text-sm font-medium tracking-wider mb-4">
-                  ESPECIALISTAS EN DERECHO PENAL Y LABORAL
-                </span>
-              </motion.div>
-              
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
-              >
-                Abogados <span className="text-blue-400">Penales</span> y <span className="text-blue-400">Laborales</span>
-              </motion.h1>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="h-px w-20 bg-blue-400 mb-6 hidden md:block"
-              ></motion.div>
-              
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-xl md:text-2xl text-gray-200 mb-8 max-w-xl"
-              >
-                Defendiendo tus derechos con experiencia, compromiso y resultados probados.
-              </motion.p>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
-              >
-                <motion.button 
-                  onClick={scrollToContact}
-                  className="bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-md font-bold text-lg transition-all shadow-lg relative overflow-hidden group"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="relative z-10">Consulta tu caso ahora</span>
-                  <motion.span 
-                    className="absolute inset-0 bg-blue-600 z-0"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  ></motion.span>
-                </motion.button>
-                
-                <motion.button
-                  className="border border-white/30 hover:border-blue-400 text-white hover:text-blue-300 px-8 py-4 rounded-md font-medium text-lg transition-all flex items-center justify-center group"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={scrollToNext}
-                >
-                  <span>Conoce más</span>
-                  <ChevronDown className="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
-                </motion.button>
-              </motion.div>
+export const HeroSection = ({ 
+  scrollToContact 
+}: { 
+  scrollToContact: () => void 
+}) => {
+  return (
+    <div className="relative min-h-screen flex items-center">
+      {/* Overlay para texto más legible */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/70 to-white/70 z-10"></div>
+      
+      {/* Imagen de fondo (mantenida como solicitaste) */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-fixed z-0"
+        style={{ 
+          backgroundImage: "url(images/hero.jpeg)",
+          backgroundPosition: "center",
+          filter: "brightness(0.8) contrast(1.6) saturate(0.5)"
+        }}
+      ></div>
+      
+      {/* Contenido principal */}
+      <div className="container mx-auto px-4 relative z-20">
+        <div className="max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <span className="inline-block bg-navy-100 text-navy-800 px-4 py-1 rounded-full text-sm font-medium tracking-wider mb-4">
+              ESPECIALISTAS EN DERECHO PENAL Y LABORAL
+            </span>
+          </motion.div>
+          
+          <motion.h1 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-navy-900 mb-6 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+          >
+            Abogados <span className="text-navy-700 relative">
+              Penalistas
+              <svg className="absolute -bottom-1 left-0 w-full h-2" viewBox="0 0 200 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 5.28C40.6667 2.12 158.8 -1.04 199 5.28" stroke="oklch(var(--color-accent-500))" strokeWidth="3" strokeLinecap="round"/>
+              </svg>
+            </span> y <span className="text-navy-700">
+              Laboralistas
+            </span>
+          </motion.h1>
+          
+          <motion.div
+            className="h-px w-24 bg-navy-300 mb-8 hidden md:block"
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: 96, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+          ></motion.div>
+          
+          <motion.p 
+            className="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+          >
+            Defendiendo tus derechos con <span className="font-semibold">experiencia</span>, <span className="font-semibold">compromiso</span> y <span className="font-semibold">resultados probados</span>.
+          </motion.p>
+          
+          <motion.div
+            className="flex flex-wrap gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.7 }}
+          >
+            <motion.button 
+              onClick={scrollToContact}
+              className="bg-navy-700 hover:bg-navy-800 text-white px-7 py-4 rounded-md font-semibold text-lg transition-all shadow-md relative overflow-hidden group"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <span className="relative z-10 flex items-center">
+                Consulta tu caso
+                <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </motion.button>
+            
+            <motion.a 
+              href="#about"
+              className="bg-white hover:bg-gray-50 text-navy-800 border border-navy-200 px-7 py-4 rounded-md font-semibold text-lg transition-all shadow-sm"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Conócenos
+            </motion.a>
+          </motion.div>
+          
+          {/* Stats badges 
+          
+          <motion.div
+            className="flex flex-wrap gap-6 mt-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+          >
+            <div className="flex items-center">
+              <div className="bg-navy-100 h-12 w-12 rounded-full flex items-center justify-center mr-3">
+                <span className="text-navy-800 font-bold text-xl">15+</span>
+              </div>
+              <div>
+                <p className="text-gray-600 text-sm">Años de</p>
+                <p className="text-navy-800 font-semibold">Experiencia</p>
+              </div>
             </div>
             
-            {/* Columna visual con elementos distintivos */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="hidden md:flex justify-end"
-            >
-              <div className="relative w-full max-w-md aspect-square">
-                {/* Elemento visual de escala de justicia estilizado */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-64 h-64 rounded-full border-4 border-blue-500/20 flex items-center justify-center">
-                    <div className="w-56 h-56 rounded-full border border-white/20 flex items-center justify-center">
-                      <div className="w-48 h-48 rounded-full bg-gradient-to-br from-blue-700/30 to-blue-500/10 backdrop-blur-sm flex items-center justify-center shadow-2xl">
-                        <div className="text-center">
-                          <div className="font-bold text-5xl text-white mb-2">APL</div>
-                          <div className="text-blue-300 text-sm tracking-wider">ESTUDIO JURÍDICO</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Puntos decorativos flotantes con animación */}
-                <motion.div 
-                  className="absolute top-8 right-12 w-6 h-6 rounded-full bg-blue-500"
-                  animate={{ 
-                    y: [0, -15, 0],
-                    opacity: [0.7, 1, 0.7]
-                  }}
-                  transition={{ 
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut" 
-                  }}
-                ></motion.div>
-                
-                <motion.div 
-                  className="absolute bottom-20 left-12 w-4 h-4 rounded-full bg-blue-400"
-                  animate={{ 
-                    y: [0, 10, 0],
-                    opacity: [0.5, 0.8, 0.5]
-                  }}
-                  transition={{ 
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1
-                  }}
-                ></motion.div>
+            <div className="flex items-center">
+              <div className="bg-navy-100 h-12 w-12 rounded-full flex items-center justify-center mr-3">
+                <span className="text-navy-800 font-bold text-xl">98%</span>
               </div>
-            </motion.div>
+              <div>
+                <p className="text-gray-600 text-sm">Casos</p>
+                <p className="text-navy-800 font-semibold">Exitosos</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center">
+              <div className="bg-navy-100 h-12 w-12 rounded-full flex items-center justify-center mr-3">
+                <span className="text-navy-800 font-bold text-xl">500+</span>
+              </div>
+              <div>
+                <p className="text-gray-600 text-sm">Clientes</p>
+                <p className="text-navy-800 font-semibold">Satisfechos</p>
+              </div>
+            </div>
+          </motion.div>
+          */}
+        </div>
+      </div>
+      
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ 
+          duration: 1,
+          delay: 1.5,
+          repeat: Infinity,
+          repeatType: "reverse",
+          repeatDelay: 0.2
+        }}
+      >
+        <div className="flex flex-col items-center">
+          <p className="text-navy-700 text-sm font-medium mb-2">Descubre más</p>
+          <div className="w-0.5 h-8 bg-navy-400 rounded-full">
+            <motion.div
+              className="w-full h-1/3 bg-navy-700 rounded-full"
+              initial={{ y: 0 }}
+              animate={{ y: 16 }}
+              transition={{
+                repeat: Infinity,
+                duration: 1.5,
+                repeatType: "loop"
+              }}
+            ></motion.div>
           </div>
         </div>
-        
-        {/* Indicador de scroll animado */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 cursor-pointer"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ 
-            duration: 0.8, 
-            delay: 1.5,
-          }}
-          onClick={scrollToNext}
-        >
-          <motion.div
-            animate={{ 
-              y: [0, 10, 0],
-            }}
-            transition={{ 
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut" 
-            }}
-            className="flex flex-col items-center"
-          >
-            <span className="text-gray-300 text-sm mb-2">Descubre más</span>
-            <ChevronDown className="h-6 w-6 text-blue-400" />
-          </motion.div>
-        </motion.div>
-      </section>
-    );
-  };
+      </motion.div>
+    </div>
+  );
+};
