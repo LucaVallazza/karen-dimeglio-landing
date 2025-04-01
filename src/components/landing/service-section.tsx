@@ -13,21 +13,20 @@ export const ServicesSection = ({
   scrollToContact: () => void;
 }) => {
   // Estado para el carrusel en dispositivos móviles
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [touchStartX, setTouchStartX] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  // const [isMobile, setIsMobile] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   
   // Detectar dispositivos móviles
   useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    // const checkIfMobile = () => {
+    //   if(isMobile)
+    //   setIsMobile(window.innerWidth < 768);
+    // };
     
-    checkIfMobile();
-    window.addEventListener('resize', checkIfMobile);
+    // checkIfMobile();
+    // window.addEventListener('resize', checkIfMobile);
     
-    return () => window.removeEventListener('resize', checkIfMobile);
+    // return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
   
   // Datos de servicios

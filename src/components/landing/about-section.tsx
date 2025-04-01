@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { 
-  MessageCircle, Award, Users, 
+  MessageCircle, Award, 
   GraduationCap, ScrollText
 } from "lucide-react";
 

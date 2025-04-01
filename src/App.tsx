@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, MapPin, Clock } from 'lucide-react';
 import { FaWhatsapp, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { Navbar } from './components/landing/navbar';
 import { HeroSection } from './components/landing/hero-section';
