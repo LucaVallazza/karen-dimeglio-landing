@@ -70,7 +70,7 @@ export const Navbar = () => {
     
     return (
       <motion.nav 
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        className={`fixed lg:px-40 top-0 left-0 w-full z-50 transition-all duration-500 ${
           navbarBg 
             ? 'bg-white shadow-soft backdrop-blur-sm py-2 border-b border-gray-200' 
             : 'bg-transparent py-4'

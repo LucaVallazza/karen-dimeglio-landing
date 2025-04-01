@@ -55,7 +55,7 @@ export const ContactSection = () => {
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-40 bg-navy-50/30"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 lg:px-40 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ export const ContactSection = () => {
           </p>
         </motion.div>
         
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto ">
           <div className="bg-white shadow-xl rounded-xl overflow-hidden border border-gray-200">
             <div className="grid md:grid-cols-5">
               {/* Información de contacto */}

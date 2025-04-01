@@ -150,7 +150,7 @@ export const ServicesSection = ({
   };
 
   return (
-    <section id="services" className="py-16 md:py-24 bg-gray-50 relative overflow-hidden">
+    <section id="services" className="py-16 md:py-24 lg:px-40 bg-gray-50 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-navy-50/50 -translate-y-1/2 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-navy-50/50 translate-y-1/2 -translate-x-1/2"></div>

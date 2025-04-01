@@ -50,7 +50,7 @@ export const AboutSection = () => {
       <div className="hidden md:block absolute top-40 right-10 w-64 h-64 rounded-full bg-navy-50 opacity-70"></div>
       <div className="hidden md:block absolute bottom-40 left-10 w-48 h-48 rounded-full bg-navy-50 opacity-70"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 lg:px-40  relative z-10">
         <motion.div 
           className="text-center mb-16"
           initial="hidden"
