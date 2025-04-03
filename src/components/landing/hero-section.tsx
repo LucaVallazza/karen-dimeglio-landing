@@ -60,7 +60,7 @@ export const HeroSection = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <span className="inline-block bg-navy-100 text-navy-800 px-4 py-1 rounded-full text-sm font-medium tracking-wider mb-4">
+            <span className="inline-block bg-navy-100 text-navy-800 px-4 py-1 rounded-full text-xs sm:text-sm font-medium tracking-wider mb-4">
               ESPECIALISTAS EN DERECHO PENAL Y LABORAL
             </span>
           </motion.div>
