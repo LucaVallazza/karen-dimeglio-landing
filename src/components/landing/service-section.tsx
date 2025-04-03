@@ -159,7 +159,7 @@ export const ServicesSection = ({
           >
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-navy-900 mb-3 md:mb-5">
               Nuestros <span className="text-navy-700 relative inline-block">
-                Servicios
+                servicios
                 <svg className="absolute -bottom-1 left-0 w-full" height="5" viewBox="0 0 200 6" fill="none">
                   <path d="M0 3C50 1 150 1 200 3" stroke="oklch(var(--color-accent-500))" strokeWidth="4" strokeLinecap="round"/>
                 </svg>

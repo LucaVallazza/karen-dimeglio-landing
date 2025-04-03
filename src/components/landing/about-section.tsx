@@ -28,17 +28,17 @@ export const AboutSection = () => {
   // Core values data
   const coreValues = [
     {
-      title: "Compromiso y Dedicación",
+      title: "Compromiso y dedicación",
       description: "Responsabilidad total en cada caso para lograr los mejores resultados posibles.",
       icon: <Award className="w-8 h-8 text-navy-700" />
     },
     {
-      title: "Trato Directo con el Cliente",
+      title: "Trato directo con el cliente",
       description: "Comunicación constante y transparente durante todo el proceso legal.",
       icon: <MessageCircle className="w-8 h-8 text-navy-700" />
     },
     {
-      title: "Escucha Activa",
+      title: "Escucha activa",
       description: "Atención personalizada para ofrecer soluciones efectivas según cada necesidad.",
       icon: <ScrollText className="w-8 h-8 text-navy-700" />
     }
@@ -61,7 +61,7 @@ export const AboutSection = () => {
         >
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-navy-900 mb-3 md:mb-5">
             Nuestro <span className="text-navy-700 relative inline-block">
-              Equipo
+              equipo
               <svg className="absolute -bottom-1 left-0 w-full" height="6" viewBox="0 0 200 6" fill="none">
                 <path d="M0 3C50 1 150 1 200 3" stroke="oklch(var(--color-accent-500))" strokeWidth="4" strokeLinecap="round"/>
               </svg>
@@ -85,7 +85,7 @@ export const AboutSection = () => {
             <div className="p-4 md:p-8">
               <div className="flex flex-col gap-4 md:gap-8">
                 <div className="text-center mb-2 md:mb-4">
-                  <h3 className="text-xl md:text-2xl font-bold text-navy-900 mb-2">Formación y Especialización</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-navy-900 mb-2">Formación y especialización</h3>
                   <div className="h-1 w-16 md:w-20 bg-navy-200 mx-auto"></div>
                 </div>
                 
@@ -96,7 +96,7 @@ export const AboutSection = () => {
                       <div className="bg-white p-2 md:p-3 rounded-full text-navy-700 mr-3 md:mr-4 shadow-sm">
                         <GraduationCap className="h-5 w-5 md:h-6 md:w-6" />
                       </div>
-                      <h4 className="text-lg md:text-xl font-semibold text-navy-800">Formación Universitaria</h4>
+                      <h4 className="text-lg md:text-xl font-semibold text-navy-800">Formación universitaria</h4>
                     </div>
                     <div className="text-sm md:text-base ml-3 mb-2"><p>
                     Graduados de las siguientes instituciones
@@ -119,7 +119,7 @@ export const AboutSection = () => {
                       <div className="bg-white p-2 md:p-3 rounded-full text-navy-700 mr-3 md:mr-4 shadow-sm">
                         <Award className="h-5 w-5 md:h-6 md:w-6" />
                       </div>
-                      <h4 className="text-lg md:text-xl font-semibold text-navy-800">Experiencia Comprobada</h4>
+                      <h4 className="text-lg md:text-xl font-semibold text-navy-800">Experiencia comprobada</h4>
                     </div>
                     <ul className="space-y-2 md:space-y-3 pl-10 md:pl-14">
                       <li className="flex items-start">

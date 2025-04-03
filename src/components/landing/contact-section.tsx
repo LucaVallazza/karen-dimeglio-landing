@@ -86,7 +86,7 @@ export const ContactSection = () => {
           <span className="inline-block px-4 py-1.5 bg-navy-100 text-navy-800 text-sm font-medium rounded-full mb-3">
             Estamos para Ayudarte
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Contacta con Nosotros</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Contacta con nosotros</h2>
           <p className="text-gray-700 max-w-2xl mx-auto">
             Complete el formulario para consultar sobre nuestros servicios legales.
           </p>
@@ -122,7 +122,7 @@ export const ContactSection = () => {
                 className="p-5 md:p-8 md:col-span-2 bg-gradient-to-br from-navy-700 to-navy-900 text-white"
               >
                 <div>
-                  <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">Información de Contacto</h3>
+                  <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">Información de contacto</h3>
                   
                   {/* Versión móvil de la información de contacto - mejorada con UI avanzada */}
                   <div className="md:hidden mb-6 space-y-4">
@@ -256,7 +256,7 @@ export const ContactSection = () => {
                 transition={{ duration: 0.7, delay: 0.2 }}
                 className="p-5 md:p-8 md:col-span-3"
               >
-                <h3 className="text-xl md:text-2xl font-bold text-navy-900 mb-5">Envíanos tu Consulta</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-navy-900 mb-5">Envianos tu consulta</h3>
                 
                 {formStatus === "success" ? (
                   <motion.div 

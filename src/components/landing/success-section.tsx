@@ -25,7 +25,7 @@ export const SuccessSection = () => {
   // Datos de casos de éxito (sin cambios)
   const successCases = [
     {
-      title: "Indemnizaciones Laborales",
+      title: "Indemnizaciones laborales",
       summary: "Más de 100 indemnizaciones laborales conseguidas en el último año.",
       description: "Hemos representado a numerosos trabajadores en sus reclamos laborales, logrando resultados favorables en casos de indemnizaciones por despido, accidentes de trabajo y otros conflictos entre empleados y empleadores.",
       results: [
@@ -35,7 +35,7 @@ export const SuccessSection = () => {
       ]
     },
     {
-      title: "Excarcelaciones y Sobreseimientos",
+      title: "Excarcelaciones y sobreseimientos",
       summary: "Excarcelaciones exitosas y sobreseimientos en causas penales.",
       description: "Nuestro equipo de abogados penalistas ha logrado que diversos clientes recuperen su libertad mediante excarcelaciones. Asimismo, hemos conseguido sobreseimientos y desvinculaciones en causas penales de distinta índole.",
       results: [
@@ -45,7 +45,7 @@ export const SuccessSection = () => {
       ]
     },
     {
-      title: "Absoluciones en Juicio",
+      title: "Absoluciones en juicio",
       summary: "Absoluciones obtenidas en diferentes procesos judiciales.",
       description: "Gracias a nuestra estrategia de defensa y dedicación en cada caso, hemos conseguido absoluciones en juicios penales, representando a nuestros clientes con el máximo compromiso en todas las etapas del proceso.",
       results: [
@@ -77,7 +77,7 @@ export const SuccessSection = () => {
           className="max-w-4xl mx-auto mb-10 md:mb-16 text-center"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy-900 mb-3 md:mb-4">
-            Casos de <span className="text-navy-700">Éxito</span>
+            Casos de <span className="text-navy-700">éxito</span>
           </h2>
           <p className="text-gray-700 max-w-3xl mx-auto text-sm md:text-base">
             Estos son algunos de los resultados que hemos conseguido para nuestros clientes. 

@@ -72,12 +72,12 @@ export const HeroSection = ({
             transition={{ duration: 0.7, delay: 0.3 }}
           >
             Abogados <span className="text-navy-700 relative">
-              Penalistas
+              penalistas
               <svg className="absolute -bottom-1 left-0 w-full h-2" viewBox="0 0 200 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 5.28C40.6667 2.12 158.8 -1.04 199 5.28" stroke="oklch(var(--color-accent-500))" strokeWidth="3" strokeLinecap="round"/>
               </svg>
             </span> y <span className="text-navy-700">
-              Laboralistas
+              laboralistas
             </span>
           </motion.h1>
           
