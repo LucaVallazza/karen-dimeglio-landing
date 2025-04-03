@@ -29,39 +29,37 @@ export const AboutSection = () => {
   const coreValues = [
     {
       title: "Compromiso y Dedicación",
-      description: "Asumimos cada caso con total responsabilidad, trabajando con determinación para conseguir los mejores resultados posibles.",
+      description: "Responsabilidad total en cada caso para lograr los mejores resultados posibles.",
       icon: <Award className="w-8 h-8 text-navy-700" />
     },
     {
       title: "Trato Directo con el Cliente",
-      description: "Mantenemos una comunicación constante y transparente, asegurando que estés informado en cada etapa del proceso legal.",
+      description: "Comunicación constante y transparente durante todo el proceso legal.",
       icon: <MessageCircle className="w-8 h-8 text-navy-700" />
     },
     {
       title: "Escucha Activa",
-      description: "Prestamos especial atención a las necesidades y preocupaciones de cada cliente para ofrecer soluciones personalizadas y efectivas.",
+      description: "Atención personalizada para ofrecer soluciones efectivas según cada necesidad.",
       icon: <ScrollText className="w-8 h-8 text-navy-700" />
     }
   ];
 
   return (
-    <section id="about" className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
-      {/* Background elements */}
+    <section id="about" className="py-12 md:py-24 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
+      {/* Background elements - solo visibles en desktop */}
       <div className="hidden md:block absolute top-40 right-10 w-64 h-64 rounded-full bg-navy-50 opacity-70"></div>
       <div className="hidden md:block absolute bottom-40 left-10 w-48 h-48 rounded-full bg-navy-50 opacity-70"></div>
       
-      <div className="container mx-auto px-4 lg:px-40  relative z-10">
+      <div className="container mx-auto px-4 lg:px-40 relative z-10">
+        {/* Encabezado - más compacto en móvil */}
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeIn}
         >
-          <span className="inline-block px-4 py-1.5 bg-navy-100 text-navy-800 text-sm font-medium rounded-full mb-3">
-            Estudio Jurídico Di Meglio
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 mb-5">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-navy-900 mb-3 md:mb-5">
             Nuestro <span className="text-navy-700 relative inline-block">
               Equipo
               <svg className="absolute -bottom-1 left-0 w-full" height="6" viewBox="0 0 200 6" fill="none">
@@ -69,80 +67,85 @@ export const AboutSection = () => {
               </svg>
             </span>
           </h2>
-          <p className="text-gray-700 max-w-3xl mx-auto text-lg">
-            Somos un equipo de abogados egresados de la Universidad de Buenos Aires con amplia experiencia en derecho penal y laboral, comprometidos con la excelencia profesional.
+          <p className="text-gray-700 max-w-3xl mx-auto text-base md:text-lg">
+            Abogados especializados en derecho penal y laboral con formación UBA y compromiso de excelencia profesional.
           </p>
         </motion.div>
         
+        {/* Sección de formación - simplificada en móvil */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
-          <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200">
-            <div className="bg-gradient-to-r from-navy-600 to-navy-800 h-2"></div>
-            <div className="p-6 md:p-8">
-              <div className="flex flex-col gap-8">
-                <div className="text-center mb-4">
-                  <h3 className="text-2xl font-bold text-navy-900 mb-2">Formación y Especialización</h3>
-                  <div className="h-1 w-20 bg-navy-200 mx-auto"></div>
+          <div className="bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-md md:shadow-lg border border-gray-200">
+            <div className="bg-gradient-to-r from-navy-600 to-navy-800 h-1.5 md:h-2"></div>
+            <div className="p-4 md:p-8">
+              <div className="flex flex-col gap-4 md:gap-8">
+                <div className="text-center mb-2 md:mb-4">
+                  <h3 className="text-xl md:text-2xl font-bold text-navy-900 mb-2">Formación y Especialización</h3>
+                  <div className="h-1 w-16 md:w-20 bg-navy-200 mx-auto"></div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-navy-50/50 p-6 rounded-xl border border-navy-100">
-                    <div className="flex items-center mb-4">
-                      <div className="bg-white p-3 rounded-full text-navy-700 mr-4 shadow-sm">
-                        <GraduationCap className="h-6 w-6" />
+                {/* Grid en columna única en móvil */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                  <div className="bg-navy-50/50 p-4 md:p-6 rounded-lg md:rounded-xl border border-navy-100">
+                    <div className="flex items-center mb-3 md:mb-4">
+                      <div className="bg-white p-2 md:p-3 rounded-full text-navy-700 mr-3 md:mr-4 shadow-sm">
+                        <GraduationCap className="h-5 w-5 md:h-6 md:w-6" />
                       </div>
-                      <h4 className="text-xl font-semibold text-navy-800">Formación Universitaria</h4>
+                      <h4 className="text-lg md:text-xl font-semibold text-navy-800">Formación Universitaria</h4>
                     </div>
-                    <ul className="space-y-3 pl-14">
+                    <div className="text-sm md:text-base ml-3 mb-2"><p>
+                    Graduados de las siguientes instituciones
+                      </p>
+                      </div>
+                    <ul className="space-y-2 md:space-y-3 pl-10 md:pl-14">
                       <li className="flex items-start">
                         <span className="bg-navy-200 h-1.5 w-1.5 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                        <span>Graduados de la Universidad de Buenos Aires (UBA)</span>
+                        <span className="text-sm md:text-base">Universidad de Buenos Aires (UBA)</span>
                       </li>
                       <li className="flex items-start">
                         <span className="bg-navy-200 h-1.5 w-1.5 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                        <span>Graduados de la Universidad Católica Argentina (UCA)</span>
+                        <span className="text-sm md:text-base">Universidad Católica Argentina (UCA)</span>
                       </li>
                     </ul>
                   </div>
-                  
 
-
-                  <div className="bg-navy-50/50 p-6 rounded-xl border border-navy-100">
-                    <div className="flex items-center mb-4">
-                      <div className="bg-white p-3 rounded-full text-navy-700 mr-4 shadow-sm">
-                        <Award className="h-6 w-6" />
+                  <div className="bg-navy-50/50 p-4 md:p-6 rounded-lg md:rounded-xl border border-navy-100">
+                    <div className="flex items-center mb-3 md:mb-4">
+                      <div className="bg-white p-2 md:p-3 rounded-full text-navy-700 mr-3 md:mr-4 shadow-sm">
+                        <Award className="h-5 w-5 md:h-6 md:w-6" />
                       </div>
-                      <h4 className="text-xl font-semibold text-navy-800">Experiencia Comprobada</h4>
+                      <h4 className="text-lg md:text-xl font-semibold text-navy-800">Experiencia Comprobada</h4>
                     </div>
-                    <ul className="space-y-3 pl-14">
+                    <ul className="space-y-2 md:space-y-3 pl-10 md:pl-14">
                       <li className="flex items-start">
                         <span className="bg-navy-200 h-1.5 w-1.5 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                        <span>Especialistas en derecho penal y laboral</span>
+                        <span className="text-sm md:text-base">Especialistas en derecho penal y laboral</span>
                       </li>
                       <li className="flex items-start">
                         <span className="bg-navy-200 h-1.5 w-1.5 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                        <span>Casos de éxito comprobados</span>
+                        <span className="text-sm md:text-base">Casos de éxito comprobados</span>
                       </li>
                     </ul>
                   </div>
                 </div>
                 
-                <div className="text-center mt-4">
-                  <p className="text-navy-700 font-medium">Brindamos asesoramiento jurídico integral con un enfoque personalizado y orientado a resultados</p>
+                <div className="text-center mt-2 md:mt-4">
+                  <p className="text-navy-700 font-medium text-sm md:text-base">Asesoramiento jurídico personalizado y orientado a resultados</p>
                 </div>
               </div>
             </div>
           </div>
         </motion.div>
         
-        <div className="mb-10 text-center">
+        {/* Título de valores - más compacto */}
+        <div className="mb-6 md:mb-10 text-center">
           <motion.h3 
-            className="text-2xl md:text-3xl font-bold text-navy-900 mb-8"
+            className="text-xl md:text-3xl font-bold text-navy-900 mb-4 md:mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -152,8 +155,9 @@ export const AboutSection = () => {
           </motion.h3>
         </div>
         
+        {/* Tarjetas de valores - más compactas en móvil */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -163,34 +167,37 @@ export const AboutSection = () => {
             <motion.div
               key={index}
               variants={fadeIn}
-              className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 group"
+              className="bg-white rounded-lg md:rounded-xl overflow-hidden shadow-sm md:shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 group"
             >
-              <div className="h-2 bg-gradient-to-r from-navy-500 to-navy-700"></div>
-              <div className="p-6 md:p-8">
-                <div className="bg-navy-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-navy-200 transition-colors">
-                  {value.icon}
+              <div className="h-1.5 md:h-2 bg-gradient-to-r from-navy-500 to-navy-700"></div>
+              <div className="p-4 md:p-8">
+                <div className="bg-navy-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-navy-200 transition-colors">
+                  <div className="scale-75 md:scale-100">
+                    {value.icon}
+                  </div>
                 </div>
-                <h4 className="text-xl font-bold text-navy-800 mb-4 text-center">{value.title}</h4>
-                <p className="text-gray-600 text-center">{value.description}</p>
+                <h4 className="text-lg md:text-xl font-bold text-navy-800 mb-2 md:mb-4 text-center">{value.title}</h4>
+                <p className="text-gray-600 text-sm md:text-base text-center">{value.description}</p>
               </div>
             </motion.div>
           ))}
         </motion.div>
         
+        {/* CTA final - más compacto */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-16 text-center"
+          className="mt-10 md:mt-16 text-center"
         >
           <a 
             href="#services" 
             className="inline-flex items-center text-navy-700 hover:text-navy-800 font-medium group"
           >
-            <span>Descubre nuestros servicios</span>
+            <span className="text-sm md:text-base">Descubre nuestros servicios</span>
             <svg 
-              className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" 
+              className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" 
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor"

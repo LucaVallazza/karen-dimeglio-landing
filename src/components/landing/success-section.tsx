@@ -22,7 +22,7 @@ export const SuccessSection = () => {
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
   
-  // Datos de casos de éxito (basados exactamente en la información proporcionada)
+  // Datos de casos de éxito (sin cambios)
   const successCases = [
     {
       title: "Indemnizaciones Laborales",
@@ -62,11 +62,11 @@ export const SuccessSection = () => {
   return (
     <section 
       id="success"
-      className="py-24 md:py-28 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden"
+      className="py-16 md:py-24 lg:py-28 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden"
     >
-      {/* Background elements */}
-      <div className="hidden md:block absolute top-40 -right-20 w-96 h-96 rounded-full bg-navy-50/40"></div>
-      <div className="hidden md:block absolute bottom-20 -left-20 w-80 h-80 rounded-full bg-navy-50/40"></div>
+      {/* Background elements - reducidos en móvil */}
+      <div className="hidden md:block absolute top-40 -right-20 w-64 md:w-96 h-64 md:h-96 rounded-full bg-navy-50/40"></div>
+      <div className="hidden md:block absolute bottom-20 -left-20 w-60 md:w-80 h-60 md:h-80 rounded-full bg-navy-50/40"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -74,23 +74,20 @@ export const SuccessSection = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto mb-20 text-center"
+          className="max-w-4xl mx-auto mb-10 md:mb-16 text-center"
         >
-          <span className="inline-block px-4 py-1.5 bg-navy-100 text-navy-800 text-sm font-medium rounded-full mb-3">
-            Historial de Resultados
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy-900 mb-3 md:mb-4">
             Casos de <span className="text-navy-700">Éxito</span>
           </h2>
-          <p className="text-gray-700 max-w-3xl mx-auto">
+          <p className="text-gray-700 max-w-3xl mx-auto text-sm md:text-base">
             Estos son algunos de los resultados que hemos conseguido para nuestros clientes. 
-            Cada caso demuestra nuestro compromiso con la defensa efectiva de los derechos de nuestros representados.
+            Cada caso demuestra nuestro compromiso con la defensa efectiva de los derechos.
           </p>
         </motion.div>
         
         <div className="max-w-4xl mx-auto">
           <motion.div
-            className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200"
+            className="bg-white rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-gray-200"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -101,7 +98,7 @@ export const SuccessSection = () => {
                 className={`border-b border-gray-200 ${index === successCases.length - 1 ? 'border-b-0' : ''}`}
               >
                 <div 
-                  className={`px-6 py-5 sm:px-8 cursor-pointer transition-colors ${
+                  className={`px-4 py-3 sm:px-6 sm:py-5 cursor-pointer transition-colors ${
                     expandedCase === index ? 'bg-navy-50/50' : 'hover:bg-gray-50'
                   }`}
                   onClick={() => toggleExpand(index)}
@@ -109,25 +106,25 @@ export const SuccessSection = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
                       {expandedCase === index ? (
-                        <div className="bg-navy-700 rounded-full p-1 mr-4">
-                          <CheckCircle className="w-5 h-5 text-white" />
+                        <div className="bg-navy-700 rounded-full p-1 mr-3 md:mr-4 flex-shrink-0">
+                          <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-white" />
                         </div>
                       ) : (
-                        <div className="bg-navy-100 rounded-full p-1 mr-4">
-                          <Award className="w-5 h-5 text-navy-700" />
+                        <div className="bg-navy-100 rounded-full p-1 mr-3 md:mr-4 flex-shrink-0">
+                          <Award className="w-4 h-4 md:w-5 md:h-5 text-navy-700" />
                         </div>
                       )}
                       <div>
-                        <h3 className={`font-semibold ${expandedCase === index ? 'text-navy-900' : 'text-gray-800'}`}>
+                        <h3 className={`font-semibold text-sm md:text-base ${expandedCase === index ? 'text-navy-900' : 'text-gray-800'}`}>
                           {item.title}
                         </h3>
-                        <p className="text-sm text-gray-600 mt-1 line-clamp-1">
+                        <p className="text-xs md:text-sm text-gray-600 mt-0.5 line-clamp-1">
                           {item.summary}
                         </p>
                       </div>
                     </div>
-                    <div className={`ml-4 transform transition-transform ${expandedCase === index ? 'rotate-180' : ''}`}>
-                      <ChevronDown className={`w-5 h-5 ${
+                    <div className={`ml-2 md:ml-4 transform transition-transform ${expandedCase === index ? 'rotate-180' : ''}`}>
+                      <ChevronDown className={`w-4 h-4 md:w-5 md:h-5 ${
                         expandedCase === index ? 'text-navy-700' : 'text-gray-400'
                       }`} />
                     </div>
@@ -150,18 +147,18 @@ export const SuccessSection = () => {
                       }}
                       className="overflow-hidden bg-navy-50/30"
                     >
-                      <div className="px-6 py-6 sm:px-8 border-t border-gray-200">
-                        <p className="text-gray-700 mb-6">
+                      <div className="px-4 py-4 sm:px-6 sm:py-6 border-t border-gray-200">
+                        <p className="text-gray-700 mb-4 md:mb-6 text-sm md:text-base">
                           {item.description}
                         </p>
                         
                         <div>
-                          <h4 className="font-medium text-navy-800 mb-3">Tipos de resultados:</h4>
-                          <ul className="space-y-2">
+                          <h4 className="font-medium text-navy-800 mb-2 md:mb-3 text-sm md:text-base">Resultados:</h4>
+                          <ul className="space-y-1.5 md:space-y-2">
                             {item.results.map((result, idx) => (
                               <li key={idx} className="flex items-start">
-                                <CheckCircle className="w-5 h-5 text-navy-600 mr-3 flex-shrink-0 mt-0.5" />
-                                <span>{result}</span>
+                                <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-navy-600 mr-2 md:mr-3 flex-shrink-0 mt-0.5" />
+                                <span className="text-sm md:text-base">{result}</span>
                               </li>
                             ))}
                           </ul>
@@ -174,27 +171,27 @@ export const SuccessSection = () => {
             ))}
           </motion.div>
           
-          {/* Banner inferior con eslogan de la empresa */}
+          {/* Banner inferior con eslogan - optimizado para móvil */}
           <motion.div
-            className="mt-12 bg-gradient-to-r from-navy-700 to-navy-800 rounded-lg overflow-hidden shadow-xl"
+            className="mt-8 md:mt-12 bg-gradient-to-r from-navy-700 to-navy-800 rounded-lg overflow-hidden shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <div className="px-6 py-6 md:py-8 md:px-10 flex flex-col md:flex-row items-center justify-between">
+            <div className="px-4 py-5 md:px-8 md:py-6 flex flex-col md:flex-row items-center justify-between">
               <div className="flex items-center mb-4 md:mb-0">
-                <div className="mr-5 bg-navy-600/40 p-2.5 rounded-full">
-                  <Award className="w-7 h-7 text-white" />
+                <div className="mr-3 md:mr-5 bg-navy-600/40 p-2 md:p-2.5 rounded-full">
+                  <Award className="w-5 h-5 md:w-7 md:h-7 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-white font-medium text-lg">El compromiso legal que tu caso necesita</h4>
-                  <p className="text-navy-100">Contáctanos para evaluar tu situación legal</p>
+                  <h4 className="text-white font-medium text-base md:text-lg">El compromiso legal que necesitas</h4>
+                  <p className="text-navy-100 text-xs md:text-sm">Contáctanos para evaluar tu caso</p>
                 </div>
               </div>
               <motion.a 
                 href="#contact" 
-                className="bg-white hover:bg-gray-100 text-navy-800 px-6 py-3 rounded-md font-medium shadow-md w-full md:w-auto text-center"
+                className="bg-white hover:bg-gray-100 text-navy-800 px-5 py-2.5 md:px-6 md:py-3 rounded text-sm md:text-base font-medium shadow-md w-full md:w-auto text-center"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
