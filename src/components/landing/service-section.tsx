@@ -205,8 +205,8 @@ export const ServicesSection = ({
                   onClick={scrollToContact}
                   className="text-navy-700 hover:text-navy-800 font-medium flex items-center"
                 >
-                  Consultar sobre este servicio
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  Consulta ahora
+                  <ChevronRight className="ml-2 h-5 w-5" />
                 </button>
               </div>
             </motion.div>
@@ -320,8 +320,8 @@ export const ServicesSection = ({
                     onClick={scrollToContact}
                     className="text-navy-700 hover:text-navy-800 font-medium flex items-center text-sm"
                   >
-                    Consultar sobre este servicio.
-                    <ArrowRight className="ml-2 h-3.5 w-3.5" />
+                    Consulta ahora
+                    <ChevronRight className="ml-2 h-5 w-5" />
                   </button>
                 </div>
               </motion.div>
@@ -345,12 +345,12 @@ export const ServicesSection = ({
               </div>
               <motion.button
                 onClick={scrollToContact}
-                className="bg-white hover:bg-gray-100 text-navy-800 px-4 py-2 md:px-6 md:py-3 rounded-md font-medium shadow-md flex items-center text-sm md:text-base"
+                className="bg-white hover:bg-gray-100 text-navy-800 px-6 py-3 rounded-md font-medium shadow-md flex items-center justify-center text-base"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Consultar ahora
-                <ChevronRight className="ml-1.5 h-4 w-4 md:h-5 md:w-5" />
+                Consulta ahora
+                <ChevronRight className="ml-2 h-5 w-5" />
               </motion.button>
             </div>
           </div>

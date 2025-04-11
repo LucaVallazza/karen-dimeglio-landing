@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, ChevronDown, CheckCircle } from "lucide-react";
+import { Award, ChevronDown, CheckCircle, ChevronRight } from "lucide-react";
 
 export const SuccessSection = () => {
   // Estado para controlar qué caso está expandido
@@ -189,11 +189,12 @@ export const SuccessSection = () => {
               </div>
               <motion.a 
                 href="#contact" 
-                className="bg-white hover:bg-gray-100 text-navy-800 px-5 py-2.5 md:px-6 md:py-3 rounded text-sm md:text-base font-medium shadow-md w-full md:w-auto text-center"
+                className="bg-white hover:bg-gray-100 text-navy-800 px-6 py-3 rounded-md font-medium shadow-md flex items-center justify-center text-base"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Solicitar consulta
+                Consulta ahora
+                <ChevronRight className="ml-2 h-5 w-5" />
               </motion.a>
             </div>
           </motion.div>
