@@ -19,42 +19,42 @@ export const ServicesSection = ({
   // Datos de servicios
   const services = [
     {
-      title: "Derecho penal",
-      subtitle: "Defensa de sus derechos y libertades",
+      title: "Derecho penal.",
+      subtitle: "Defensa de sus derechos y libertades.",
       icon: <Gavel className="h-6 w-6 text-navy-700" />,
       features: [
-        { text: "Defensas y querellas", icon: <ShieldCheck className="h-5 w-5" /> },
-        { text: "Denuncias", icon: <FileText className="h-5 w-5" /> },
-        { text: "Instrucción, juicio y ejecución", icon: <Scale className="h-5 w-5" /> },
-        { text: "Excarcelaciones y morigeración de penas", icon: <Unlock className="h-5 w-5" /> },
-        { text: "Recursos de apelación y casación", icon: <FileEdit className="h-5 w-5" /> },
-        { text: "Pedidos de libertad condicional y asistida", icon: <TimerReset className="h-5 w-5" /> },
-        { text: "Otros servicios relacionados", icon: <MoreHorizontal className="h-5 w-5" /> }
+        { text: "Defensas y querellas.", icon: <ShieldCheck className="h-5 w-5" /> },
+        { text: "Denuncias.", icon: <FileText className="h-5 w-5" /> },
+        { text: "Instrucción, juicio y ejecución.", icon: <Scale className="h-5 w-5" /> },
+        { text: "Excarcelaciones y morigeración de penas.", icon: <Unlock className="h-5 w-5" /> },
+        { text: "Recursos de apelación y casación.", icon: <FileEdit className="h-5 w-5" /> },
+        { text: "Pedidos de libertad condicional y asistida.", icon: <TimerReset className="h-5 w-5" /> },
+        { text: "Otros servicios relacionados.", icon: <MoreHorizontal className="h-5 w-5" /> }
       ],
       description: "Brindamos asesoramiento y representación legal completa en materia penal, defendiendo sus derechos con estrategias eficaces basadas en nuestra amplia experiencia."
     },
     {
-      title: "Derecho laboral",
-      subtitle: "Protección de derechos del trabajador",
+      title: "Derecho laboral.",
+      subtitle: "Protección de derechos del trabajador.",
       icon: <Briefcase className="h-6 w-6 text-navy-700" />,
       features: [
-        { text: "Intercambio telegráfico", icon: <Mail className="h-5 w-5" /> },
-        { text: "SECLO", icon: <Users className="h-5 w-5" /> },
-        { text: "Demandas y contestaciones", icon: <FileText className="h-5 w-5" /> },
-        { text: "Audiencias y ejecución", icon: <Mic className="h-5 w-5" /> },
-        { text: "Medidas cautelares y reincorporaciones", icon: <ShieldAlert className="h-5 w-5" /> },
-        { text: "Acuerdos laborales", icon: <Handshake className="h-5 w-5" /> }
+        { text: "Intercambio telegráfico.", icon: <Mail className="h-5 w-5" /> },
+        { text: "SECLO.", icon: <Users className="h-5 w-5" /> },
+        { text: "Demandas y contestaciones.", icon: <FileText className="h-5 w-5" /> },
+        { text: "Audiencias y ejecución.", icon: <Mic className="h-5 w-5" /> },
+        { text: "Medidas cautelares y reincorporaciones.", icon: <ShieldAlert className="h-5 w-5" /> },
+        { text: "Acuerdos laborales.", icon: <Handshake className="h-5 w-5" /> }
       ],
       description: "Defendemos los derechos de los trabajadores con un enfoque especializado, garantizando que reciban un trato justo y las compensaciones que les corresponden por ley."
     },
     {
-      title: "Amparos de salud",
-      subtitle: "Defensa del derecho a la salud",
+      title: "Amparos de salud.",
+      subtitle: "Defensa del derecho a la salud.",
       icon: <Heart className="h-6 w-6 text-navy-700" />,
       features: [
-        { text: "Medidas cautelares", icon: <Clock className="h-5 w-5" /> },
-        { text: "Amparos contra ministerios de Salud, Obras Sociales y prepagas", icon: <ShieldCheck className="h-5 w-5" /> },
-        { text: "Ejecuciones de sentencias", icon: <Gavel className="h-5 w-5" /> }
+        { text: "Medidas cautelares.", icon: <Clock className="h-5 w-5" /> },
+        { text: "Amparos contra ministerios de Salud, Obras Sociales y prepagas.", icon: <ShieldCheck className="h-5 w-5" /> },
+        { text: "Ejecuciones de sentencias.", icon: <Gavel className="h-5 w-5" /> }
       ],
       description: "Garantizamos el acceso a tratamientos y medicamentos necesarios mediante acciones legales efectivas contra entidades que niegan la cobertura adecuada de salud."
     }
@@ -145,10 +145,6 @@ export const ServicesSection = ({
 
   return (
     <section id="services" className="py-10 md:py-16 lg:py-24 lg:px-40 bg-gray-50 relative overflow-hidden">
-      {/* Background elements - reducidos */}
-      <div className="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 rounded-full bg-navy-50/50 -translate-y-1/2 translate-x-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-48 md:w-80 h-48 md:h-80 rounded-full bg-navy-50/50 translate-y-1/2 -translate-x-1/2"></div>
-      
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-10 md:mb-16">
           <motion.div
@@ -159,7 +155,7 @@ export const ServicesSection = ({
           >
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-navy-900 mb-3 md:mb-5">
               Nuestros <span className="text-navy-700 relative inline-block">
-                servicios
+                servicios:
                 <svg className="absolute -bottom-1 left-0 w-full" height="5" viewBox="0 0 200 6" fill="none">
                   <path d="M0 3C50 1 150 1 200 3" stroke="oklch(var(--color-accent-500))" strokeWidth="4" strokeLinecap="round"/>
                 </svg>
@@ -324,7 +320,7 @@ export const ServicesSection = ({
                     onClick={scrollToContact}
                     className="text-navy-700 hover:text-navy-800 font-medium flex items-center text-sm"
                   >
-                    Consultar sobre este servicio
+                    Consultar sobre este servicio.
                     <ArrowRight className="ml-2 h-3.5 w-3.5" />
                   </button>
                 </div>
@@ -344,8 +340,8 @@ export const ServicesSection = ({
           <div className="bg-gradient-to-r from-navy-700 to-navy-800 rounded-lg md:rounded-xl shadow-md overflow-hidden">
             <div className="px-4 py-6 md:py-8 md:px-10 flex flex-col md:flex-row md:items-center md:justify-between">
               <div className="mb-4 md:mb-0">
-                <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">¿Necesita asesoramiento legal?</h3>
-                <p className="text-navy-100 text-sm">Contáctenos para evaluar su caso</p>
+                <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">¿Necesita asesoramiento legal?.</h3>
+                <p className="text-navy-100 text-sm">Contáctenos para evaluar su caso.</p>
               </div>
               <motion.button
                 onClick={scrollToContact}

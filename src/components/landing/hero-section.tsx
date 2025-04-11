@@ -2,7 +2,7 @@ import { ChevronRight, ChevronUp, MessageSquare } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Icono de WhatsApp personalizado para mejor visualización
+// Icono de WhatsApp personalizado
 const WhatsAppIcon = () => (
   <svg 
     viewBox="0 0 24 24" 
@@ -38,22 +38,48 @@ export const HeroSection = ({
   };
   
   return (
-    <div className="relative min-h-screen flex items-center">
-      {/* Overlay para texto más legible */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/70 to-white/70 z-10"></div>
-      
-      {/* Imagen de fondo */}
+    <div className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Imagen de fondo con filtro */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-fixed z-0"
+        className="absolute inset-0 bg-cover bg-center bg-fixed z-0 bg-[url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070')]"
         style={{ 
-          backgroundImage: "url(images/hero.jpeg)",
           backgroundPosition: "center",
-          filter: "brightness(0.8) contrast(1.6) saturate(0.5)"
+          filter: "brightness(1) contrast(0.8) saturate(0.7)"
         }}
       ></div>
       
+      {/* Overlay para texto más legible */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/50 to-white/40 z-10"></div>
+      
+      {/* Formas geométricas superpuestas - Ahora con z-index mayor que el overlay */}
+      <div className="absolute inset-0 z-15">
+        {/* Triángulo grande superior derecho - extendido más allá del viewport */}
+        <div className="absolute right-0 top-0 w-full h-full bg-navy-800 opacity-80"
+          style={{
+            clipPath: "polygon(100% 0, 100% 100%, 50% 100%)",
+            transform: "translateX(30%)" // Movemos para que la punta quede fuera
+          }}
+        ></div>
+        
+        {/* Triángulo medio azul claro - extendido más allá del viewport */}
+        <div className="absolute right-0 top-0 w-full h-full bg-navy-600 opacity-70"
+          style={{
+            clipPath: "polygon(100% 0, 100% 100%, 30% 100%)",
+            transform: "translateX(40%)" // Movemos para que la punta quede fuera
+          }}
+        ></div>
+        
+        {/* Triángulo pequeño turquesa - extendido más allá del viewport */}
+        <div className="absolute right-0 top-0 w-full h-full bg-navy-400 opacity-60"
+          style={{
+            clipPath: "polygon(100% 0, 100% 100%, 10% 100%)",
+            transform: "translateX(50%)" // Movemos para que la punta quede fuera
+          }}
+        ></div>
+      </div>
+      
       {/* Contenido principal */}
-      <div className="container mx-auto  px-4 lg:px-40  relative z-20">
+      <div className="container mx-auto px-4 lg:px-40 relative z-20">
         <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -61,7 +87,7 @@ export const HeroSection = ({
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <span className="inline-block bg-navy-100 text-navy-800 px-4 py-1 rounded-full text-xs sm:text-sm font-medium tracking-wider mb-4">
-              ESPECIALISTAS EN DERECHO PENAL Y LABORAL
+              ESPECIALISTAS EN DERECHO PENAL Y LABORAL.
             </span>
           </motion.div>
           
@@ -71,13 +97,13 @@ export const HeroSection = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
-            Abogados <span className="text-navy-700 relative">
-              penalistas
+            ABOGADOS <span className="text-navy-700 relative">
+              PENALISTAS
               <svg className="absolute -bottom-1 left-0 w-full h-2" viewBox="0 0 200 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 5.28C40.6667 2.12 158.8 -1.04 199 5.28" stroke="oklch(var(--color-accent-500))" strokeWidth="3" strokeLinecap="round"/>
               </svg>
-            </span> y <span className="text-navy-700">
-              laboralistas
+            </span> Y <span className="text-navy-700">
+              LABORALISTAS.
             </span>
           </motion.h1>
           
@@ -89,12 +115,12 @@ export const HeroSection = ({
           ></motion.div>
           
           <motion.p 
-            className="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl"
+            className="text-xl md:text-2xl text-gray-900 mb-8 max-w-2xl font-medium drop-shadow-md"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
           >
-            Defendiendo tus derechos con <span className="font-semibold">experiencia</span>, <span className="font-semibold">compromiso</span> y <span className="font-semibold">resultados probados</span>.
+            Brindamos servicios profesionales en las ramas del derecho penal y laboral.
           </motion.p>
           
           <motion.div
@@ -147,56 +173,32 @@ export const HeroSection = ({
                         mass: 1
                       }}
                     >
+                      {/* Contenido del menú */}
                       <div className="bg-white backdrop-blur-sm bg-opacity-95 rounded-xl shadow-2xl border border-gray-200 overflow-hidden">
-                        <div className="p-1.5">
-                          {/* Header del menú */}
-                          <div className="px-4 py-3 border-b border-gray-100">
-                            <h4 className="text-navy-900 font-medium">¿Cómo prefieres contactarnos?</h4>
+                        <button
+                          onClick={handleContactClick}
+                          className="w-full px-6 py-4 flex items-center text-left hover:bg-gray-50 border-b border-gray-100"
+                        >
+                          <MessageSquare className="w-5 h-5 mr-3 text-navy-700" />
+                          <div>
+                            <p className="font-medium text-gray-900">Formulario de contacto.</p>
+                            <p className="text-sm text-gray-500">Complete el formulario para una consulta detallada.</p>
                           </div>
-                          
-                          {/* Opciones */}
-                          <div className="p-1">
-                            <motion.button 
-                              onClick={openWhatsApp}
-                              className="w-full text-left p-3 flex items-center text-navy-800 hover:bg-navy-50 rounded-lg transition-colors"
-                              whileHover={{ x: 3 }}
-                              whileTap={{ scale: 0.98 }}
-                            >
-                              <div className="bg-green-50 p-2.5 rounded-full mr-3.5 flex-shrink-0">
-                                <WhatsAppIcon />
-                              </div>
-                              <div>
-                                <p className="font-medium text-gray-900">WhatsApp</p>
-                                <p className="text-sm text-gray-600">Respuesta en minutos</p>
-                              </div>
-                              <ChevronRight className="w-4 h-4 text-gray-400 ml-auto" />
-                            </motion.button>
-                            
-                            <motion.button 
-                              onClick={handleContactClick}
-                              className="w-full text-left p-3 flex items-center text-navy-800 hover:bg-navy-50 rounded-lg transition-colors"
-                              whileHover={{ x: 3 }}
-                              whileTap={{ scale: 0.98 }}
-                            >
-                              <div className="bg-navy-50 p-2.5 rounded-full mr-3.5 flex-shrink-0">
-                                <MessageSquare className="h-5 w-5 text-navy-700" />
-                              </div>
-                              <div>
-                                <p className="font-medium text-gray-900">Formulario de contacto</p>
-                                <p className="text-sm text-gray-600">Detalla tu consulta</p>
-                              </div>
-                              <ChevronRight className="w-4 h-4 text-gray-400 ml-auto" />
-                            </motion.button>
+                        </button>
+
+                        <button
+                          onClick={openWhatsApp}
+                          className="w-full px-6 py-4 flex items-center text-left hover:bg-gray-50"
+                        >
+                          <WhatsAppIcon />
+                          <div className="ml-3">
+                            <p className="font-medium text-gray-900">WhatsApp directo.</p>
+                            <p className="text-sm text-gray-500">Consulta rápida por mensaje.</p>
                           </div>
-                        </div>
-                        
-                        {/* Footer del menú */}
-                        <div className="bg-gray-50 px-4 py-2 text-xs text-gray-500 text-center border-t border-gray-100">
-                          Respuesta profesional garantizada
-                        </div>
+                        </button>
                       </div>
                       
-                      {/* Flecha indicadora mejorada */}
+                      {/* Flecha indicadora */}
                       <div className="absolute left-10 bottom-0 transform translate-y-full">
                         <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
                           <path d="M10 10L0 0H20L10 10Z" fill="white"/>
@@ -209,14 +211,14 @@ export const HeroSection = ({
               </AnimatePresence>
             </div>
             
-            {/* El botón "Conócenos" permanece igual */}
+            {/* El botón "Nuestros Servicios" */}
             <motion.a 
-              href="#about"
+              href="#services"
               className="bg-white hover:bg-gray-50 text-navy-800 border border-navy-200 px-7 py-4 rounded-md font-semibold text-lg transition-all shadow-sm"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              Conócenos
+              Nuestros servicios
             </motion.a>
           </motion.div>
         </div>
@@ -224,7 +226,7 @@ export const HeroSection = ({
       
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
+        className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
@@ -236,10 +238,10 @@ export const HeroSection = ({
         }}
       >
         <div className="flex flex-col items-center">
-          <p className="text-navy-700 text-sm font-medium mb-2">Descubre más</p>
-          <div className="w-0.5 h-8 bg-navy-400 rounded-full">
+          <p className="text-white font-medium mb-2 text-sm">Descubre más</p>
+          <div className="w-0.5 h-8 bg-white/50 rounded-full">
             <motion.div
-              className="w-full h-1/3 bg-navy-700 rounded-full"
+              className="w-full h-1/3 bg-white rounded-full"
               initial={{ y: 0 }}
               animate={{ y: 16 }}
               transition={{
@@ -252,13 +254,21 @@ export const HeroSection = ({
         </div>
       </motion.div>
       
-      {/* Cerrar el menú al hacer clic fuera */}
-      {showMenu && (
-        <div 
-          className="fixed inset-0 z-10" 
-          onClick={() => setShowMenu(false)}
+      {/* Triángulo blanco de transición con punta izquierda */}
+      <div className="absolute bottom-0 left-0 right-0 w-full h-24 z-20">
+        <div className="absolute bottom-0 left-0 w-full h-full bg-white"
+          style={{
+            clipPath: "polygon(0 100%, 100% 100%, 0 0)"
+          }}
         ></div>
-      )}
+        
+        {/* Pequeño triángulo azul para mantener coherencia con el diseño */}
+        <div className="absolute bottom-0 left-0 w-full h-full bg-navy-400/20"
+          style={{
+            clipPath: "polygon(0 100%, 100% 100%, 0 20%)"
+          }}
+        ></div>
+      </div>
     </div>
   );
 };

@@ -37,7 +37,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <h3 className="text-xl font-bold">Abogados Penalistas y Laboralistas</h3>
+            <h3 className="text-xl font-bold">Abogados Penalistas y Laboralistas.</h3>
             <p className="mt-2 text-navy-200">Defendiendo tus derechos, con experiencia y compromiso.</p>
           </div>
           

@@ -64,7 +64,7 @@ export const Navbar = () => {
       { name: "Inicio", section: "home", href: "#home" },
       { name: "Nosotros", section: "about", href: "#about" },
       { name: "Servicios", section: "services", href: "#services" },
-      { name: "Casos de Éxito", section: "success", href: "#success" },
+      { name: "Casos", section: "success", href: "#success" },
       { name: "Contacto", section: "contact", href: "#contact" }
     ];
     
@@ -95,7 +95,7 @@ export const Navbar = () => {
                 </div>
               </div>
               <div>
-                <span className="text-navy-900 font-bold text-lg tracking-tight">
+                <span className="hidden text-navy-900 font-bold text-lg tracking-tight">
                   Abogados <span className="text-navy-700">Penalistas</span> y <span className="text-navy-700">Laboralistas</span>
                 </span>
               </div>

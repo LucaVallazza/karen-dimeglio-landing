@@ -25,31 +25,85 @@ export const AboutSection = () => {
     }
   };
 
-  // Core values data
+  // Core values data remains unchanged
   const coreValues = [
     {
-      title: "Compromiso y dedicación",
+      title: "Compromiso y dedicación.",
       description: "Responsabilidad total en cada caso para lograr los mejores resultados posibles.",
       icon: <Award className="w-8 h-8 text-navy-700" />
     },
     {
-      title: "Trato directo con el cliente",
+      title: "Trato directo con el cliente.",
       description: "Comunicación constante y transparente durante todo el proceso legal.",
       icon: <MessageCircle className="w-8 h-8 text-navy-700" />
     },
     {
-      title: "Escucha activa",
+      title: "Escucha activa.",
       description: "Atención personalizada para ofrecer soluciones efectivas según cada necesidad.",
       icon: <ScrollText className="w-8 h-8 text-navy-700" />
     }
   ];
 
   return (
-    <section id="about" className="py-12 md:py-24 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
-      {/* Background elements - solo visibles en desktop */}
-      <div className="hidden md:block absolute top-40 right-10 w-64 h-64 rounded-full bg-navy-50 opacity-70"></div>
-      <div className="hidden md:block absolute bottom-40 left-10 w-48 h-48 rounded-full bg-navy-50 opacity-70"></div>
-      
+    <section id="about" className="py-12 md:py-24 relative overflow-hidden bg-gradient-to-b from-[#eff9ff] to-white">
+      {/* Abstract Background Elements */}
+      <div className="absolute inset-0 z-0">
+        {/* Chess-like pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          {/* First row */}
+          <div className="absolute top-0 left-0 w-48 h-48 bg-navy-800 transform -rotate-6"></div>
+          <div className="absolute top-0 right-0 w-56 h-56 bg-navy-800 transform rotate-6"></div>
+          
+          {/* Second row */}
+          <div className="absolute top-1/4 left-1/4 w-40 h-40 bg-navy-800 transform rotate-12"></div>
+          <div className="absolute top-1/4 right-1/4 w-52 h-52 bg-navy-800 transform -rotate-12"></div>
+          
+          {/* Third row */}
+          <div className="absolute top-2/4 left-10 w-44 h-44 bg-navy-800 transform -rotate-3"></div>
+          <div className="absolute top-2/4 right-10 w-48 h-48 bg-navy-800 transform rotate-3"></div>
+          
+          {/* Fourth row */}
+          <div className="absolute bottom-1/4 left-1/3 w-36 h-36 bg-navy-800 transform rotate-6"></div>
+          <div className="absolute bottom-1/4 right-1/3 w-40 h-40 bg-navy-800 transform -rotate-6"></div>
+          
+          {/* Last row */}
+          <div className="absolute bottom-0 left-20 w-44 h-44 bg-navy-800 transform -rotate-12"></div>
+          <div className="absolute bottom-0 right-20 w-52 h-52 bg-navy-800 transform rotate-12"></div>
+        </div>
+
+        {/* Gradient overlay to soften the pattern */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.85) 100%)"
+          }}
+        ></div>
+
+        {/* Existing diagonal shape */}
+        <div 
+          className="absolute -top-1/4 right-0 w-[800px] h-[800px] opacity-[0.03]"
+          style={{
+            background: "linear-gradient(135deg, #1e3a8a 0%, transparent 70%)",
+            transform: "skewY(-12deg)"
+          }}
+        />
+        
+        {/* Floating border squares */}
+        <div className="absolute top-20 left-10 w-40 h-40 border border-navy-200/20 transform rotate-12"></div>
+        <div className="absolute bottom-40 right-20 w-60 h-60 border border-navy-200/20 transform -rotate-12"></div>
+        <div className="absolute top-1/3 right-1/4 w-48 h-48 border border-navy-200/20 transform rotate-45"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-52 h-52 border border-navy-200/20 transform -rotate-45"></div>
+
+        {/* Subtle gradient overlays */}
+        <div 
+          className="absolute left-0 top-1/3 w-1/2 h-96 opacity-[0.04]"
+          style={{
+            background: "radial-gradient(circle at center, #1e3a8a 0%, transparent 70%)"
+          }}
+        />
+      </div>
+
+      {/* Content container */}
       <div className="container mx-auto px-4 lg:px-40 relative z-10">
         {/* Encabezado - más compacto en móvil */}
         <motion.div 
@@ -61,7 +115,7 @@ export const AboutSection = () => {
         >
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-navy-900 mb-3 md:mb-5">
             Nuestro <span className="text-navy-700 relative inline-block">
-              equipo
+              equipo:
               <svg className="absolute -bottom-1 left-0 w-full" height="6" viewBox="0 0 200 6" fill="none">
                 <path d="M0 3C50 1 150 1 200 3" stroke="oklch(var(--color-accent-500))" strokeWidth="4" strokeLinecap="round"/>
               </svg>
@@ -85,7 +139,7 @@ export const AboutSection = () => {
             <div className="p-4 md:p-8">
               <div className="flex flex-col gap-4 md:gap-8">
                 <div className="text-center mb-2 md:mb-4">
-                  <h3 className="text-xl md:text-2xl font-bold text-navy-900 mb-2">Formación y especialización</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-navy-900 mb-2">Formación y especialización.</h3>
                   <div className="h-1 w-16 md:w-20 bg-navy-200 mx-auto"></div>
                 </div>
                 
@@ -96,20 +150,20 @@ export const AboutSection = () => {
                       <div className="bg-white p-2 md:p-3 rounded-full text-navy-700 mr-3 md:mr-4 shadow-sm">
                         <GraduationCap className="h-5 w-5 md:h-6 md:w-6" />
                       </div>
-                      <h4 className="text-lg md:text-xl font-semibold text-navy-800">Formación universitaria</h4>
+                      <h4 className="text-lg md:text-xl font-semibold text-navy-800">Formación universitaria:</h4>
                     </div>
                     <div className="text-sm md:text-base ml-3 mb-2"><p>
-                    Graduados de las siguientes instituciones
+                    Graduados de las siguientes instituciones:
                       </p>
                       </div>
                     <ul className="space-y-2 md:space-y-3 pl-10 md:pl-14">
                       <li className="flex items-start">
                         <span className="bg-navy-200 h-1.5 w-1.5 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                        <span className="text-sm md:text-base">Universidad de Buenos Aires (UBA)</span>
+                        <span className="text-sm md:text-base">Universidad de Buenos Aires (UBA).</span>
                       </li>
                       <li className="flex items-start">
                         <span className="bg-navy-200 h-1.5 w-1.5 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                        <span className="text-sm md:text-base">Universidad Católica Argentina (UCA)</span>
+                        <span className="text-sm md:text-base">Universidad Católica Argentina (UCA).</span>
                       </li>
                     </ul>
                   </div>
@@ -119,23 +173,23 @@ export const AboutSection = () => {
                       <div className="bg-white p-2 md:p-3 rounded-full text-navy-700 mr-3 md:mr-4 shadow-sm">
                         <Award className="h-5 w-5 md:h-6 md:w-6" />
                       </div>
-                      <h4 className="text-lg md:text-xl font-semibold text-navy-800">Experiencia comprobada</h4>
+                      <h4 className="text-lg md:text-xl font-semibold text-navy-800">Experiencia comprobada:</h4>
                     </div>
                     <ul className="space-y-2 md:space-y-3 pl-10 md:pl-14">
                       <li className="flex items-start">
                         <span className="bg-navy-200 h-1.5 w-1.5 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                        <span className="text-sm md:text-base">Especialistas en derecho penal y laboral</span>
+                        <span className="text-sm md:text-base">Especialistas en derecho penal y laboral.</span>
                       </li>
                       <li className="flex items-start">
                         <span className="bg-navy-200 h-1.5 w-1.5 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                        <span className="text-sm md:text-base">Casos de éxito comprobados</span>
+                        <span className="text-sm md:text-base">Casos de éxito comprobados.</span>
                       </li>
                     </ul>
                   </div>
                 </div>
                 
                 <div className="text-center mt-2 md:mt-4">
-                  <p className="text-navy-700 font-medium text-sm md:text-base">Asesoramiento jurídico personalizado y orientado a resultados</p>
+                  <p className="text-navy-700 font-medium text-sm md:text-base">Asesoramiento jurídico personalizado y orientado a resultados.</p>
                 </div>
               </div>
             </div>
@@ -151,7 +205,7 @@ export const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            Nuestros valores
+            Nuestros valores:
           </motion.h3>
         </div>
         
