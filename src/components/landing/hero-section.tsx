@@ -1,4 +1,4 @@
-import { ChevronRight, ChevronUp, MessageSquare } from "lucide-react";
+import { ChevronUp, MessageSquare } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 

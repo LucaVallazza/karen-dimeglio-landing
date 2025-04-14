@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Gavel, Briefcase, ShieldCheck, Clock, 
   Scale, FileText, Heart,
-  ChevronRight, ChevronLeft, ArrowRight, Mail, Users,
+  ChevronRight, ChevronLeft, Mail, Users,
   Handshake, FileEdit, Mic, ShieldAlert, TimerReset, Unlock, MoreHorizontal
 } from "lucide-react";
 
