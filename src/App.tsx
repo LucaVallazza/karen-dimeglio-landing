@@ -15,7 +15,7 @@ import { ContactSection } from './components/landing/contact-section';
 const WhatsAppButton = () => {
   return (
     <motion.a
-      href="https://wa.me/5491112345678?text=Hola,%20me%20gustaría%20realizar%20una%20consulta"
+      href="https://wa.me/541164586232?text=Hola,%20me%20gustaría%20realizar%20una%20consulta"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 bg-green-600 hover:bg-green-500 w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-50"
@@ -38,7 +38,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <h3 className="text-xl font-bold">Abogados Penalistas y Laboralistas.</h3>
-            <p className="mt-2 text-navy-200">Defendiendo tus derechos, con experiencia y compromiso.</p>
+            <p className="mt-2 text-navy-200">El compromiso legal que tu caso necesita.</p>
           </div>
           
           <div className="flex flex-col items-center md:items-end">

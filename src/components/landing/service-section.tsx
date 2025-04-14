@@ -340,8 +340,8 @@ export const ServicesSection = ({
           <div className="bg-gradient-to-r from-navy-700 to-navy-800 rounded-lg md:rounded-xl shadow-md overflow-hidden">
             <div className="px-4 py-6 md:py-8 md:px-10 flex flex-col md:flex-row md:items-center md:justify-between">
               <div className="mb-4 md:mb-0">
-                <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">¿Necesita asesoramiento legal?.</h3>
-                <p className="text-navy-100 text-sm">Contáctenos para evaluar su caso.</p>
+                <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">¿Necesita asesoramiento legal?</h3>
+                <p className="text-navy-100 text-sm">Contactanos para evaluar tu caso.</p>
               </div>
               <motion.button
                 onClick={scrollToContact}

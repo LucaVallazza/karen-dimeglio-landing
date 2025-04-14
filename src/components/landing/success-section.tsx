@@ -184,7 +184,7 @@ export const SuccessSection = () => {
                 </div>
                 <div>
                   <h4 className="text-white font-medium text-base md:text-lg">El compromiso legal que necesitas.</h4>
-                  <p className="text-navy-100 text-xs md:text-sm">Contáctanos para evaluar tu caso.</p>
+                  <p className="text-navy-100 text-xs md:text-sm">Contactanos para evaluar tu caso.</p>
                 </div>
               </div>
               <motion.a 

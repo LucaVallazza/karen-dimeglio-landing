@@ -254,9 +254,9 @@ export const HeroSection = ({
         </div>
       </motion.div>
       
-      {/* Triángulo blanco de transición con punta izquierda */}
+      {/* Triángulo de transición que coincide con el fondo del AboutSection */}
       <div className="absolute bottom-0 left-0 right-0 w-full h-24 z-20">
-        <div className="absolute bottom-0 left-0 w-full h-full bg-white"
+        <div className="absolute bottom-0 left-0 w-full h-full bg-[#eff9ff]"
           style={{
             clipPath: "polygon(0 100%, 100% 100%, 0 0)"
           }}
