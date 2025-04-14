@@ -90,8 +90,7 @@ export const Navbar = () => {
               transition={{ duration: 0.2 }}
             >
               <div className="relative group">
-                <div className="absolute inset-0 bg-navy-600/50 rounded-xl blur-lg opacity-40 group-hover:opacity-60 transition-all"></div>
-                <div className="h-10 w-10 p-1 md:h-12 md:w-12 rounded-xl bg-gradient-to-br from-navy-600 to-navy-900 flex items-center justify-center relative shadow-lg overflow-hidden">
+                <div className="h-12 w-14 p-1 md:h-14 md:w-16 rounded-xl bg-gradient-to-br from-navy-600 to-navy-900 flex items-center justify-center relative overflow-hidden">
                   <img 
                     src="/icono.webp" 
                     alt="APL Logo"
